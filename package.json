@@ -1,0 +1,17 @@
+{
+  "name": "recipe-ipsum",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gabriel Laroche <gabriel.laroche@nurun.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel src/build index.html"
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "devDependencies": {
+    "sass": "^1.26.3"
+  }
+}
