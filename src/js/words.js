@@ -12,7 +12,7 @@ export const measurementNames = [
 export const ingredientList = [
     'salt', 'red chili flakes', 'pepper', 'paprika', 'oregano',
     'tumeric', 'cayenne pepper', 'thyme', 'cinnamon', 'sugar',
-    'pasta', 'rice', 'couscous', 'quinoa', 'flour', 'Baking powder',
+    'pasta', 'rice', 'couscous', 'quinoa', 'flour', 'baking powder',
     'milk', 'butter', 'egg', 'olive oil', 'apple', 'asparagus', 'cheese',
     'orange', 'zucchini', 'sesame seeds', 'bacon', 'carrots', 'celery',
     'ketchup', 'mayonnaise', 'vinegar', 'mustard', 'honey', 'maple syrup',
