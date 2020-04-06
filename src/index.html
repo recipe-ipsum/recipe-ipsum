@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <title>Recipe Ipsum</title>
     <link rel="stylesheet" href="scss/styles.scss">
+    <!-- Fathom - simple website analytics - https://github.com/usefathom/fathom -->
+    <script>
+        (function(f, a, t, h, o, m){
+            a[h]=a[h]||function(){
+                (a[h].q=a[h].q||[]).push(arguments)
+            };
+            o=f.createElement('script'),
+                m=f.getElementsByTagName('script')[0];
+            o.async=1; o.src=t; o.id='fathom-script';
+            m.parentNode.insertBefore(o,m)
+        })(document, window, '//stats.hobkit.com/tracker.js', 'fathom');
+        fathom('set', 'siteId', 'KTVEN');
+        fathom('trackPageview');
+    </script>
+    <!-- / Fathom -->
 </head>
 <body>
 <main>
     <div>
-
         <h1>Recipe Ipsum</h1>
         <p>This monstrosity generates completely nonsensical recipes, enjoy!</p>
         <form name="genrateRecipeForm" id="genrateRecipeForm" novalidate>

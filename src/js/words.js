@@ -19,6 +19,8 @@ export const ingredientList = [
     'garlic', 'shallot', 'onion', 'potato', 'tomato', 'soy sauce', 'hot sauce',
     'lentils', 'beans', 'chickpeas', 'trout', 'salmon', 'cornstarch', 'plain yogurt',
     'oats', 'edamame', 'chicken breast', 'rolled oats', 'parsley', 'chestnuts', 'kiwi',
+    'banana', 'coriander', 'feta', 'goat cheese', 'rosemary', 'basil', 'halloumi', 'baking soda',
+    'brown sugar'
 ];
 
 export const stepList = [
