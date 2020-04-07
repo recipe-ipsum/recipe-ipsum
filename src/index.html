@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Recipe Ipsum</title>
     <link rel="stylesheet" href="scss/styles.scss">
+    <link rel="icon" href="favicon.ico">
     <!-- Fathom - simple website analytics - https://usefathom.com/ref/FQZUZM -> Get $10 off your first invoice
     Why you should Switch to Fathom Analytics
     - You don't need to display those pesky cookie notices as they don't use cookies, nor does Fathom track invasive data.
@@ -33,33 +34,50 @@
     <div>
         <h1>Recipe Ipsum</h1>
         <p>This monstrosity generates completely nonsensical recipes, enjoy!</p>
-        <form name="genrateRecipeForm" id="genrateRecipeForm" novalidate>
-            <div>
-                <label for="nbIngredients">Number of ingredients</label>
+        <p>This goes without saying, but please don't make any of these recipes.</p>
+        <form class="form" name="generateRecipeForm" id="generateRecipeForm" novalidate>
+            <div class="form__input-ctn">
+                <label for="nbIngredients">Number of ingredients: </label>
                 <input type="number" id="nbIngredients" min="1">
             </div>
 
-            <div>
-                <label for="nbSteps">Number of steps</label>
+            <div class="form__input-ctn">
+                <label for="nbSteps">Number of steps: </label>
                 <input type="number" id="nbSteps" min="0">
             </div>
 
-            <button type="submit" id="genrateRecipeBtn">Generate Recipe</button>
+            <button class="submit-button" type="submit" id="genrateRecipeBtn">Generate Recipe</button>
         </form>
-        <!--<div class="hidden format-ctn">
-            <p>Which format would you like to have this recipe in?</p>
-            <button type="button" class="format-btn format-btn&#45;&#45;is-active" id="text">Text</button>
-            <button type="button" class="format-btn" id="html">HTML</button>
-            <button type="button" class="format-btn" id="markdown">Markdown</button>
-        </div>-->
-        <div id="ingredientsRender"></div>
-        <div id="stepsRender"></div>
+        <div class="recipe hidden">
+            <div id="ingredientsRender" class="recipe__ingredients">
+                <h2>Ingredients</h2>
+            </div>
+            <div>
+                <button id="copyIngredientsBtn" data-clipboard-action="copy" class="copy-button">Copy ingredients to clipboard</button>
+                <span class="tooltip">Copied Ingredients</span>
+            </div>
+            <div id="stepsRender" class="recipe__steps">
+                <h2>Directions</h2>
+            </div>
+            <div>
+                <button id="copyStepsBtn" data-clipboard-action="copy" class="copy-button">Copy directions to clipboard</button>
+                <span class="tooltip">Copied directions</span>
+            </div>
+
+            <div class="copy-recipe-ctn">
+                <button id="copyRecipeBtn" data-clipboard-action="copy" class="copy-button">Copy full recipe to clipboard</button>
+                <span class="tooltip">Copied Recipe</span>
+            </div>
+        </div>
     </div>
 </main>
 <footer>
-    <small>&copy; <a href="https://gabriellaroche.dev">Gabriel Laroche</a> All rights reserved.</small>
-    <small>Made with love and <a href="https://github.com/gabLaroche/recipe-ipsum">code</a></small>
+    <p>&copy; <a href="https://gabriellaroche.dev">Gabriel Laroche</a> All rights reserved.</p>
+    <p>Questions or feature request? <a href="mailto:hi@gabriellaroche.dev">Send me an email</a> or <a href="https://twitter.com/glarocheDev">tweet me</a></p>
+    <p>Made with love and <a href="https://github.com/gabLaroche/recipe-ipsum">code</a></p>
 </footer>
 <script src="js/index.js"></script>
+<script src="js/clipboard-management.js"></script>
+<script src="https://unpkg.com/mailgo@0.8.4/dist/mailgo.min.js"></script>
 </body>
 </html>

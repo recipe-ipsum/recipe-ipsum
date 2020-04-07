@@ -3,3 +3,4 @@ recipe-ipsum.iml
 .idea
 dist
 .cache
+.DS_Store

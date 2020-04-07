@@ -12,7 +12,7 @@ Array.prototype.random = function () {
     return this[Math.floor((Math.random()*this.length))];
 };
 
-const form = document.getElementById('genrateRecipeForm');
+const form = document.getElementById('generateRecipeForm');
 const nbIngredientsInput = document.getElementById('nbIngredients');
 const nbStepsInput = document.getElementById('nbSteps');
 
@@ -20,7 +20,6 @@ const ingredientsRenderElem = document.getElementById('ingredientsRender');
 const stepsRenderElem = document.getElementById('stepsRender');
 const ingredientsHtmlList = document.createElement('ul');
 const stepsHtmlList = document.createElement('ol');
-// const formatButtonsContainer = document.querySelector('.format-ctn');
 
 nbIngredientsInput.setAttribute('max', ingredientList.length.toString());
 nbStepsInput.setAttribute('max', stepList.length.toString());
@@ -44,9 +43,9 @@ const generateRecipe = (event) => {
         stepsHtmlList.innerHTML += `<li>${step}</li>`
     });
 
-    // formatButtonsContainer.classList.remove('hidden');
     ingredientsRenderElem.appendChild(ingredientsHtmlList);
     stepsRenderElem.appendChild(stepsHtmlList);
+    document.querySelector('.recipe').classList.remove('hidden')
 };
 
 const generateIngredients = (nbIngredients) => {
@@ -55,7 +54,7 @@ const generateIngredients = (nbIngredients) => {
     for (let i = 0; i < nbIngredients; i++) {
         const randomMeasurement = generateMeasurement(measurementDecimals.random());
         let randomMeasurementType = measurementNames.random();
-        randomMeasurementType = typeof randomMeasurement === 'number' && randomMeasurement > 1 ? randomMeasurementType + 's' : randomMeasurementType;
+        randomMeasurementType = (typeof randomMeasurement === 'number' && randomMeasurement > 1) || (typeof randomMeasurement === 'string' && randomMeasurement.includes(' ')) ? randomMeasurementType + 's' : randomMeasurementType;
         let randomIngredient = ingredientListCopy.random();
         let ingredientIndex = ingredientListCopy.indexOf(randomIngredient);
         if (ingredientIndex > -1) {
@@ -72,7 +71,18 @@ const generateIngredients = (nbIngredients) => {
 };
 
 const generateMeasurement = measurement => {
-    return measurement === 0 ? Math.floor((Math.random() * 5) + 1) : decimalToFraction(measurement);
+    let newMeasurement = measurement;
+    let randomInt = Math.floor((Math.random() * 5) + 1);
+    let fraction = decimalToFraction(measurement);
+
+    // This makes it to have whole numbers with fractions like 2 1/2 cups of milk
+    if (Math.floor(Math.random() * 2) === 0) {
+        newMeasurement = measurement === 0 ? randomInt : fraction;
+    } else {
+        newMeasurement = measurement === 0 ? randomInt  : `${randomInt.toString()} ${fraction}`;
+    }
+
+    return newMeasurement;
 };
 
 const generateSteps = (nbSteps, ingredients) => {

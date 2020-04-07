@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+$font-family: 'Noto Sans', sans-serif;
+$colour-primary: #001D4A;
+$colour-primary-light: #00399e;
+$colour-primary-lighter: #148ac6;
+
 :root {
     font-size: 10px;
 }
@@ -7,8 +14,22 @@ html {
     min-height: 100%;
 }
 
+a {
+    &:link, &:visited {
+        transition: all ease 0.35s;
+        color: $colour-primary-light;
+        text-decoration: none;
+        font-weight: 700;
+    }
+
+    &:hover, &:focus {
+        color: $colour-primary-lighter;
+    }
+}
+
 body {
-    font-family: sans-serif;
+    font-family: $font-family;
+    background-color: #F9F8F8;
     font-size: 1.6rem;
     margin: 0;
 }
@@ -16,7 +37,7 @@ body {
 main, footer {
     max-width: 95vw;
     margin: 0 auto;
-    @media screen and (min-width: 1440px) {
+    @media screen and (min-width: 1200px) {
         max-width: 1050px;
     }
 }
@@ -30,10 +51,84 @@ main {
 }
 
 footer {
-    display: flex;
-    justify-content: space-between;
+    font-size: 1.4rem;
+    margin-top: 5rem;
+    @media screen and (min-width: 1024px) {
+        margin-top: 0;
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 .hidden {
     display: none;
+}
+
+button {
+    padding: 0;
+    background: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: $font-family;
+    font-size: 1.4rem;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.form {
+    &__input-ctn {
+        margin: 2rem 0;
+        label {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        input {
+            font-size: 1.6rem;
+            border: 2px solid #000000;
+            border-radius: 5px;
+        }
+    }
+}
+
+.submit-button {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    font-size: 1.6rem;
+    color: #ffffff;
+    background: $colour-primary;
+    transition: all ease 0.35s;
+
+    &:hover, &:focus {
+        transform: rotate(-2deg);
+        background-color: $colour-primary-light;
+    }
+}
+
+.copy-recipe-ctn {
+    margin-top: 2rem;
+}
+
+.copy-button {
+    font-weight: bold;
+    color: $colour-primary-light;
+    transition: all ease 0.35s;
+
+    &:hover, &:focus {
+        color: $colour-primary-lighter;
+    }
+}
+
+.tooltip {
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: all ease 0.35s;
+    font-weight: 700;
+
+    &--is-active {
+        opacity: 1;
+    }
 }

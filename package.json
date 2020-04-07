@@ -9,6 +9,7 @@
     "build": "parcel src/build index.html"
   },
   "dependencies": {
+    "clipboard": "^2.0.6",
     "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {

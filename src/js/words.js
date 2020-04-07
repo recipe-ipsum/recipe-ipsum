@@ -1,5 +1,5 @@
 export const measurementDecimals = [
-    0, 0.125, 0.25, 0.5, 0.3, 0.8, 0.75
+    0, 0.25, 0.5, 0.3, 0.8, 0.75
 ];
 
 export const measurementNames = [
