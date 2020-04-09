@@ -6,13 +6,24 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel src/index.html",
-    "build": "parcel src/build index.html"
+    "build": "parcel src/build index.html",
+    "test:open": "cypress open",
+    "check:coverage": "nyc report --reporter=text-summary --reporter=lcov --check-coverage"
   },
   "dependencies": {
     "clipboard": "^2.0.6",
     "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.0.0-0",
+    "@cypress/code-coverage": "^3.0.2",
+    "babel-plugin-istanbul": "^6.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "cypress": "^4.3.0",
+    "cypress-intellij-reporter": "^0.0.4",
+    "istanbul-lib-coverage": "^3.0.0",
+    "nyc": "^15.0.1",
     "sass": "^1.26.3"
   }
 }
