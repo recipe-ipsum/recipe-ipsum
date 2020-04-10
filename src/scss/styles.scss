@@ -79,6 +79,18 @@ button {
 }
 
 .form {
+    details {
+        margin: 0 0 2rem;
+        summary {
+            cursor: pointer;
+            color: $colour-primary-light;
+            &:hover, &:focus {
+                outline: none;
+                color: $colour-primary-lighter;
+            }
+        }
+    }
+
     &__input-ctn {
         margin: 2rem 0;
         label {

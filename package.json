@@ -1,14 +1,13 @@
 {
   "name": "recipe-ipsum",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "author": "Gabriel Laroche <gabriel.laroche@nurun.com>",
   "license": "MIT",
   "scripts": {
     "dev": "parcel src/index.html",
     "build": "parcel src/build index.html",
-    "test:open": "cypress open",
-    "check:coverage": "nyc report --reporter=text-summary --reporter=lcov --check-coverage"
+    "test:open": "cypress open"
   },
   "dependencies": {
     "clipboard": "^2.0.6",

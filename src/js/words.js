@@ -1,15 +1,15 @@
-export const measurementDecimals = [
+export const decimals = [
     0, 0.25, 0.5, 0.3, 0.8, 0.75
 ];
 
-export const measurementNames = [
+export const measurements = [
     'teaspoon',
     'tablespoon',
     'cup',
     'lb'
 ];
 
-export const ingredientList = [
+export const ingredients = [
     'salt', 'red chili flakes', 'pepper', 'paprika', 'oregano',
     'tumeric', 'cayenne pepper', 'thyme', 'cinnamon', 'sugar',
     'pasta', 'rice', 'couscous', 'quinoa', 'flour', 'baking powder',
@@ -23,7 +23,7 @@ export const ingredientList = [
     'brown sugar'
 ];
 
-export const stepList = [
+export const directions = [
     'Stir in the {ingredient} with the rest of the ingredients.',
     'Cook on high heat until browned and fragrant.',
     'Let sit for 10 minutes before serving.',

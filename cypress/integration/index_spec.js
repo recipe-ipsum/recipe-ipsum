@@ -1,11 +1,9 @@
 describe('The Home Page', () => {
-    it('successfully loads', () => {
+    beforeEach(() => {
         cy.visit('/');
-    });
+    })
 
     it('Should generate recipe with no arguments', () => {
-        cy.visit('/');
-
         cy.get('#genrateRecipeBtn').click();
 
         cy.get('#ingredientsRender ul').should('be.visible');
@@ -13,8 +11,7 @@ describe('The Home Page', () => {
     });
 
     it('Should generate recipe with a certain number of ingredients and steps', () => {
-        cy.visit('/');
-
+        cy.get('details').click();
         cy.get('#nbIngredients').type('5');
         cy.get('#nbSteps').type('8');
 
@@ -29,4 +26,25 @@ describe('The Home Page', () => {
             expect($li).to.have.length(8)
         });
     });
-})
+
+    it('Should copy ingredients', () => {
+        cy.get('#genrateRecipeBtn').click();
+
+        cy.get('#copyIngredientsBtn').click();
+        cy.get('#copyIngredientsBtn + span.tooltip').should('be.visible');
+    });
+
+    it('Should copy directions', () => {
+        cy.get('#genrateRecipeBtn').click();
+
+        cy.get('#copyStepsBtn').click();
+        cy.get('#copyStepsBtn + span.tooltip').should('be.visible');
+    });
+
+    it('Should copy recipe', () => {
+        cy.get('#genrateRecipeBtn').click();
+
+        cy.get('#copyRecipeBtn').click();
+        cy.get('#copyRecipeBtn + span.tooltip').should('be.visible');
+    });
+});
