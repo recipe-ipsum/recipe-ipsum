@@ -17,10 +17,12 @@ export const ingredients = [
     'orange', 'zucchini', 'sesame seeds', 'bacon', 'carrots', 'celery',
     'ketchup', 'mayonnaise', 'vinegar', 'mustard', 'honey', 'maple syrup',
     'garlic', 'shallot', 'onion', 'potato', 'tomato', 'soy sauce', 'hot sauce',
-    'lentils', 'beans', 'chickpeas', 'trout', 'salmon', 'cornstarch', 'plain yogurt',
+    'lentils', 'black beans', 'mixed beans', 'kidney beans', 'chickpeas',
+    'lima beans', 'pinto beans', 'trout', 'salmon', 'cornstarch', 'plain yogurt',
     'oats', 'edamame', 'chicken breast', 'rolled oats', 'parsley', 'chestnuts', 'kiwi',
     'banana', 'coriander', 'feta', 'goat cheese', 'rosemary', 'basil', 'halloumi', 'baking soda',
-    'brown sugar'
+    'brown sugar', 'tofu', 'tempeh', 'seitan', 'bulgur', 'soba noodles', 'chia seeds', 'hemp hearts', 'flax seeds',
+    'hazelnuts', 'peanuts', 'brazil nuts', 'strawberries', 'blueberries', 'pine nuts', 'kale'
 ];
 
 export const directions = [
