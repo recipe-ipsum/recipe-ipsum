@@ -4,13 +4,9 @@
 *  - Logical steps like beginning, middle, end, maybe not a choice of steps and go according to num of ingredients
 *  - every ingredient must be used at least once in the steps
 * */
-
-import {measurementDecimals, measurementNames, ingredientList, stepList} from "./words";
-import decimalToFraction from "./fraction";
-
-Array.prototype.random = function () {
-    return this[Math.floor((Math.random()*this.length))];
-};
+import * as lists from './words';
+import {decimalToFraction} from "./utils";
+import {clipboardManager} from './clipboardManager';
 
 const form = document.getElementById('generateRecipeForm');
 const nbIngredientsInput = document.getElementById('nbIngredients');
@@ -21,8 +17,8 @@ const stepsRenderElem = document.getElementById('stepsRender');
 const ingredientsHtmlList = document.createElement('ul');
 const stepsHtmlList = document.createElement('ol');
 
-nbIngredientsInput.setAttribute('max', ingredientList.length.toString());
-nbStepsInput.setAttribute('max', stepList.length.toString());
+nbIngredientsInput.setAttribute('max', lists.ingredients.length.toString());
+nbStepsInput.setAttribute('max', lists.directions.length.toString());
 
 const generateRecipe = (event) => {
     event.preventDefault();
@@ -33,7 +29,7 @@ const generateRecipe = (event) => {
     const nbSteps = parseInt(nbStepsInput.value, 10) || Math.floor((Math.random() * 5) + 1);
 
     const ingredients = generateIngredients(nbIngredients);
-    const steps = generateSteps(nbSteps, ingredients);
+    const steps = generateSteps(lists.directions, nbSteps, ingredients);
 
     ingredients.forEach(ingredient => {
         ingredientsHtmlList.innerHTML += `<li>${ingredient.amount} of ${ingredient.ingredient}</li>`
@@ -50,10 +46,10 @@ const generateRecipe = (event) => {
 
 const generateIngredients = (nbIngredients) => {
     let ingredients = [];
-    let ingredientListCopy = [...ingredientList];
+    let ingredientListCopy = [...lists.ingredients];
     for (let i = 0; i < nbIngredients; i++) {
-        const randomMeasurement = generateMeasurement(measurementDecimals.random());
-        let randomMeasurementType = measurementNames.random();
+        const randomMeasurement = generateMeasurement(lists.decimals.random());
+        let randomMeasurementType = lists.measurements.random();
         randomMeasurementType = (typeof randomMeasurement === 'number' && randomMeasurement > 1) || (typeof randomMeasurement === 'string' && randomMeasurement.includes(' ')) ? randomMeasurementType + 's' : randomMeasurementType;
         let randomIngredient = ingredientListCopy.random();
         let ingredientIndex = ingredientListCopy.indexOf(randomIngredient);
@@ -85,9 +81,9 @@ const generateMeasurement = measurement => {
     return newMeasurement;
 };
 
-const generateSteps = (nbSteps, ingredients) => {
+const generateSteps = (directions, nbSteps, ingredients) => {
     const steps = [];
-    const stepListCopy = [...stepList];
+    const stepListCopy = [...directions];
 
     for (let i = 0; i < nbSteps; i++) {
         let randomStep = stepListCopy.random();
@@ -98,14 +94,7 @@ const generateSteps = (nbSteps, ingredients) => {
         }
 
         if (randomStep.includes('{ingredient}')) {
-            const split = randomStep.split(' ');
-            for (let i = 0; i < split.length; i++) {
-                if (split[i].includes('{ingredient}')) {
-                    split[i] = split[i].replace(/{ingredient}/, ingredients.random().ingredient);
-                }
-            }
-
-            randomStep = split.join(' ')
+            randomStep = replaceIngredientPlaceholder(randomStep, ingredients);
         }
 
         steps.push(randomStep)
@@ -114,4 +103,16 @@ const generateSteps = (nbSteps, ingredients) => {
     return steps;
 };
 
+const replaceIngredientPlaceholder = (step, ingredients) => {
+    const split = step.split(' ');
+    for (let i = 0; i < split.length; i++) {
+        if (split[i].includes('{ingredient}')) {
+            split[i] = split[i].replace(/{ingredient}/, ingredients.random().ingredient);
+        }
+    }
+
+    return split.join(' ');
+};
+
+clipboardManager();
 form.addEventListener('submit', generateRecipe);

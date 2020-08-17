@@ -38,15 +38,18 @@
         <p>This monstrosity generates completely nonsensical recipes, enjoy!</p>
         <p>This goes without saying, but please don't make any of these recipes.</p>
         <form class="form" name="generateRecipeForm" id="generateRecipeForm" novalidate>
-            <div class="form__input-ctn">
-                <label for="nbIngredients">Number of ingredients: </label>
-                <input type="number" id="nbIngredients" min="1">
-            </div>
+            <details>
+                <summary>Customize number of ingredients and directions</summary>
+                <div class="form__input-ctn">
+                    <label for="nbIngredients">Number of ingredients: </label>
+                    <input type="number" id="nbIngredients" min="1">
+                </div>
 
-            <div class="form__input-ctn">
-                <label for="nbSteps">Number of steps: </label>
-                <input type="number" id="nbSteps" min="0">
-            </div>
+                <div class="form__input-ctn">
+                    <label for="nbSteps">Number of Directions: </label>
+                    <input type="number" id="nbSteps" min="0">
+                </div>
+            </details>
 
             <button class="submit-button" type="submit" id="genrateRecipeBtn">Generate Recipe</button>
         </form>
@@ -56,19 +59,19 @@
             </div>
             <div>
                 <button id="copyIngredientsBtn" data-clipboard-action="copy" class="copy-button">Copy ingredients to clipboard</button>
-                <span class="tooltip">Copied Ingredients</span>
+                <span class="tooltip">Copied</span>
             </div>
             <div id="stepsRender" class="recipe__steps">
                 <h2>Directions</h2>
             </div>
             <div>
                 <button id="copyStepsBtn" data-clipboard-action="copy" class="copy-button">Copy directions to clipboard</button>
-                <span class="tooltip">Copied directions</span>
+                <span class="tooltip">Copied</span>
             </div>
 
             <div class="copy-recipe-ctn">
                 <button id="copyRecipeBtn" data-clipboard-action="copy" class="copy-button">Copy full recipe to clipboard</button>
-                <span class="tooltip">Copied Recipe</span>
+                <span class="tooltip">Copied</span>
             </div>
         </div>
     </div>
@@ -78,8 +81,12 @@
     <p>Questions or feature request? <a href="mailto:hi@gabriellaroche.dev">Send me an email</a> or <a href="https://twitter.com/glarocheDev">tweet me</a></p>
     <p>Made with love and <a href="https://github.com/gabLaroche/recipe-ipsum">code</a></p>
 </footer>
+<script>
+    Array.prototype.random = function () {
+        return this[Math.floor((Math.random()*this.length))];
+    };
+</script>
 <script src="js/index.js"></script>
-<script src="js/clipboard-management.js"></script>
 <script src="https://unpkg.com/mailgo@0.8.4/dist/mailgo.min.js"></script>
 </body>
 </html>

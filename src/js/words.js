@@ -1,15 +1,15 @@
-export const measurementDecimals = [
+export const decimals = [
     0, 0.25, 0.5, 0.3, 0.8, 0.75
 ];
 
-export const measurementNames = [
+export const measurements = [
     'teaspoon',
     'tablespoon',
     'cup',
     'lb'
 ];
 
-export const ingredientList = [
+export const ingredients = [
     'salt', 'red chili flakes', 'pepper', 'paprika', 'oregano',
     'tumeric', 'cayenne pepper', 'thyme', 'cinnamon', 'sugar',
     'pasta', 'rice', 'couscous', 'quinoa', 'flour', 'baking powder',
@@ -17,13 +17,15 @@ export const ingredientList = [
     'orange', 'zucchini', 'sesame seeds', 'bacon', 'carrots', 'celery',
     'ketchup', 'mayonnaise', 'vinegar', 'mustard', 'honey', 'maple syrup',
     'garlic', 'shallot', 'onion', 'potato', 'tomato', 'soy sauce', 'hot sauce',
-    'lentils', 'beans', 'chickpeas', 'trout', 'salmon', 'cornstarch', 'plain yogurt',
+    'lentils', 'black beans', 'mixed beans', 'kidney beans', 'chickpeas',
+    'lima beans', 'pinto beans', 'trout', 'salmon', 'cornstarch', 'plain yogurt',
     'oats', 'edamame', 'chicken breast', 'rolled oats', 'parsley', 'chestnuts', 'kiwi',
     'banana', 'coriander', 'feta', 'goat cheese', 'rosemary', 'basil', 'halloumi', 'baking soda',
-    'brown sugar'
+    'brown sugar', 'tofu', 'tempeh', 'seitan', 'bulgur', 'soba noodles', 'chia seeds', 'hemp hearts', 'flax seeds',
+    'hazelnuts', 'peanuts', 'brazil nuts', 'strawberries', 'blueberries', 'pine nuts', 'kale'
 ];
 
-export const stepList = [
+export const directions = [
     'Stir in the {ingredient} with the rest of the ingredients.',
     'Cook on high heat until browned and fragrant.',
     'Let sit for 10 minutes before serving.',

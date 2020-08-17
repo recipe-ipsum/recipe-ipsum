@@ -4,7 +4,7 @@ const gcd = function(a, b) {
     return gcd(b, Math.floor(a % b));           // Discard any fractions due to limitations in precision.
 };
 
-const decimalToFraction = (decimal) => {
+export const decimalToFraction = (decimal) => {
     const len = decimal.toString().length - 2;
 
     let denominator = Math.pow(8, len);
@@ -17,5 +17,3 @@ const decimalToFraction = (decimal) => {
 
     return Math.floor(numerator) + '/' + Math.floor(denominator);
 };
-
-export default decimalToFraction;
