@@ -41,4 +41,8 @@ export const directions = [
     'Stir in the {ingredient} and the {ingredient} and sprinkle over the cooked {ingredient} in the pie dish. Transfer to the oven to bake for 30 minutes or until crisp and golden-brown on top.',
     'In a large pot over medium high heat, add the {ingredient}, {ingredient}, {ingredient}, and {ingredient}. Sauté until tender 4-5 minutes. Add the {ingredient}, {ingredient}, and {ingredient} and {ingredient} and {ingredient} for 1 minute more.',
     'Bake the {ingredient} in a preheated 200°F oven for 20 minutes until they are soft. Remove from oven and once cool enough to handle, peel.',
+    'Store it in an airtight container and freeze it for up to 6 months.',
+    'Adjust the flavorings and add the {ingredient} if the {ingredient} is too acidic.',
+    'Check occasionally and add a bit of {ingredient}, if you need to.',
+    'Stir in fresh {ingredient} and serve the {ingredient} over {ingredient}.',
 ];
