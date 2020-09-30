@@ -22,7 +22,8 @@ export const ingredients = [
     'oats', 'edamame', 'chicken breast', 'rolled oats', 'parsley', 'chestnuts', 'kiwi',
     'banana', 'coriander', 'feta', 'goat cheese', 'rosemary', 'basil', 'halloumi', 'baking soda',
     'brown sugar', 'tofu', 'tempeh', 'seitan', 'bulgur', 'soba noodles', 'chia seeds', 'hemp hearts', 'flax seeds',
-    'hazelnuts', 'peanuts', 'brazil nuts', 'strawberries', 'blueberries', 'pine nuts', 'kale'
+    'hazelnuts', 'peanuts', 'brazil nuts', 'strawberries', 'blueberries', 'pine nuts', 'kale','tahini','artichoke', 'eggplant',
+    'okra', 'pumpkin', 'avocado'
 ];
 
 export const directions = [
