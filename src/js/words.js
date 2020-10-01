@@ -38,7 +38,14 @@ export const measurements = [
     'cup',
     'lb',
     'pint',
-    'quart'
+    'quart',
+    'fluid ounce',
+    'gallon',
+    'ml',
+    'litre',
+    'pound',
+    'kilogram',
+    'gram',
 ];
 
 export const ingredients = [
@@ -134,7 +141,19 @@ export const ingredients = [
     { name: 'avocado', type: vegetable },
     { name: 'peppercorn', type: spice },
     { name: 'mustard seed', type: spice },
-    { name: 'dill', type: herb }
+    { name: 'dill', type: herb },
+    { name: 'fennel seeds', type: spice },
+    { name: 'nutmeg', type: spice },
+    { name: 'bay leaves', type: spice },
+    { name: 'bread crumbs', type: carbs },
+    { name: 'yeast', type: carbs },
+    { name: 'heavy cream', type: dairy },
+    { name: 'parmesan cheese', type: dairy },
+    { name: 'lemon', type: fruit },
+    { name: 'lime', type: fruit },
+    { name: 'raspberries', type: fruit },
+    { name: 'canola oil', type: fat },
+    { name: 'blackberries', type: fruit },
 ];
 
 export const directions = [
@@ -156,4 +175,9 @@ export const directions = [
     'Adjust the flavorings and add the {ingredient} if the {ingredient} is too acidic.',
     'Check occasionally and add a bit of {ingredient}, if you need to.',
     'Stir in fresh {ingredient} and serve the {ingredient} over {ingredient}.',
+    'Mix the first two ingredients in a large bowl.',
+    'Grease the pan with butter.',
+    'In a small bowl, mix together the {ingredient} and {ingredient}.',
+    'Use an electric mixer to mix the {ingredient}, {ingredient} and {ingredient}.',
+    'Put the {ingredient}, {ingredient} and {ingredient} in your food processor and chop to a pulp.',
 ];
