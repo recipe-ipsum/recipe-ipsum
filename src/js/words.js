@@ -28,7 +28,9 @@ const {
     nut,
 } = ingredientTypes;
 
-export const decimals = [0, 0.25, 0.5, 0.3, 0.8, 0.75];
+export const decimals = [
+    0, 0.25, 0.5, 0.3, 0.8, 0.75
+];
 
 export const measurements = [
     'teaspoon',
