@@ -93,7 +93,7 @@ const generateIngredients = (nbIngredients, isSeriousMode) => {
         });
     }
 
-    return ingredients;
+    return ingredients.shuffle();
 };
 
 const convertMeasurement = (measurement) => {
