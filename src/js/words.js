@@ -6,7 +6,9 @@ export const measurements = [
     'teaspoon',
     'tablespoon',
     'cup',
-    'lb'
+    'lb',
+    'pint',
+    'quart'
 ];
 
 export const ingredients = [
@@ -23,7 +25,7 @@ export const ingredients = [
     'banana', 'coriander', 'feta', 'goat cheese', 'rosemary', 'basil', 'halloumi', 'baking soda',
     'brown sugar', 'tofu', 'tempeh', 'seitan', 'bulgur', 'soba noodles', 'chia seeds', 'hemp hearts', 'flax seeds',
     'hazelnuts', 'peanuts', 'brazil nuts', 'strawberries', 'blueberries', 'pine nuts', 'kale','tahini','artichoke', 'eggplant',
-    'okra', 'pumpkin', 'avocado'
+    'okra', 'pumpkin', 'avocado', 'peppercorn', 'mustard seed', 'dill'
 ];
 
 export const directions = [
