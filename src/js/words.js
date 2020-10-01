@@ -142,7 +142,6 @@ export const ingredients = [
     { name: 'peppercorn', type: spice },
     { name: 'mustard seed', type: spice },
     { name: 'dill', type: herb },
-    { name: 'coriander', type: spice },
     { name: 'fennel seeds', type: spice },
     { name: 'nutmeg', type: spice },
     { name: 'bay leaves', type: spice },
