@@ -88,13 +88,29 @@ const generateIngredients = (nbIngredients, isSeriousMode) => {
         }
 
         ingredients.push({
-            amount: `${randomMeasurement} ${randomMeasurementType}`,
+            amount: convertMeasurement(`${randomMeasurement} ${randomMeasurementType}`),
             ingredient: randomIngredient
         });
     }
 
-    return ingredients.shuffle();
+    return ingredients;
 };
+
+const convertMeasurement = (measurement) => {
+    if (measurement === '3 teaspoons') {
+        return '1 tablespoon';
+    } else if (measurement === '4 tablespoons' || measurement === '12 teaspoons') {
+        return '1/4 cup';
+    } else if (measurement === '16 tablespoons') {
+        return '1 cup'; 
+    } else if (measurement === '2 cups') {
+        return '1 pint';
+    } else if (measurement === '2 pints' || measurement === '4 cups') {
+        return '1 quart';
+    } else {
+        return measurement;
+    }
+}
 
 const generateMeasurement = measurement => {
     let newMeasurement = measurement;
