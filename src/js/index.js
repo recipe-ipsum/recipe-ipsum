@@ -130,6 +130,7 @@ const generateMeasurement = measurement => {
 const generateSteps = (directions, nbSteps, ingredients) => {
     const steps = [];
     const stepListCopy = [...directions];
+    let notUsedIngredients = generateIngredientsNames(ingredients);
 
     for (let i = 0; i < nbSteps; i++) {
         let randomStep = stepListCopy.random();
@@ -140,7 +141,15 @@ const generateSteps = (directions, nbSteps, ingredients) => {
         }
 
         if (randomStep.includes('{ingredient}')) {
-            randomStep = replaceIngredientPlaceholder(randomStep, ingredients);
+            const count = (randomStep.match(/\{ingredient\}/g)).length;
+            let usedIngredients;
+
+            if (notUsedIngredients.length <= count){
+                notUsedIngredients = generateIngredientsNames(ingredients);
+            }
+            usedIngredients = notUsedIngredients.splice(0, count);
+            randomStep = replaceIngredientPlaceholder(randomStep, usedIngredients);
+                
         }
 
         steps.push(randomStep)
@@ -149,13 +158,20 @@ const generateSteps = (directions, nbSteps, ingredients) => {
     return steps;
 };
 
-const replaceIngredientPlaceholder = (step, ingredients) => {
+const generateIngredientsNames = (ingredients) => {
+    return ingredients.shuffle().map((ingredient) => {
+        return ingredient.ingredient.name;
+    });
+};
+
+const replaceIngredientPlaceholder = (step, usedIngredients) => {
     const split = step.split(' ');
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes('{ingredient}')) {
-            split[i] = split[i].replace(/{ingredient}/, ingredients.random().ingredient.name);
+            let ingredient = usedIngredients.pop();
+            split[i] = split[i].replace(/{ingredient}/, ingredient);
         }
-    }
+    };
 
     return split.join(' ');
 };
