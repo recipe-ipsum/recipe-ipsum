@@ -11,6 +11,7 @@ import {clipboardManager} from './clipboardManager';
 const form = document.getElementById('generateRecipeForm');
 const nbIngredientsInput = document.getElementById('nbIngredients');
 const nbStepsInput = document.getElementById('nbSteps');
+const seriousModeInput = document.getElementById('seriousMode');
 
 const ingredientsRenderElem = document.getElementById('ingredientsRender');
 const stepsRenderElem = document.getElementById('stepsRender');
@@ -28,11 +29,11 @@ const generateRecipe = (event) => {
     const nbIngredients = parseInt(nbIngredientsInput.value, 10) || Math.floor((Math.random() * 10) + 1);
     const nbSteps = parseInt(nbStepsInput.value, 10) || Math.floor((Math.random() * 5) + 1);
 
-    const ingredients = generateIngredients(nbIngredients);
+    const ingredients = generateIngredients(nbIngredients, seriousModeInput.checked);
     const steps = generateSteps(lists.directions, nbSteps, ingredients);
 
     ingredients.forEach(ingredient => {
-        ingredientsHtmlList.innerHTML += `<li>${ingredient.amount} of ${ingredient.ingredient}</li>`
+        ingredientsHtmlList.innerHTML += `<li>${ingredient.amount} of ${ingredient.ingredient.name}</li>`
     });
 
     steps.forEach(step => {
@@ -44,15 +45,44 @@ const generateRecipe = (event) => {
     document.querySelector('.recipe').classList.remove('hidden')
 };
 
-const generateIngredients = (nbIngredients) => {
+const generateIngredients = (nbIngredients, isSeriousMode) => {
     let ingredients = [];
     let ingredientListCopy = [...lists.ingredients];
+    const chosenIngredientTypes = {};
+
     for (let i = 0; i < nbIngredients; i++) {
         const randomMeasurement = generateMeasurement(lists.decimals.random());
         let randomMeasurementType = lists.measurements.random();
-        randomMeasurementType = (typeof randomMeasurement === 'number' && randomMeasurement > 1) || (typeof randomMeasurement === 'string' && randomMeasurement.includes(' ')) ? randomMeasurementType + 's' : randomMeasurementType;
-        let randomIngredient = ingredientListCopy.random();
-        let ingredientIndex = ingredientListCopy.indexOf(randomIngredient);
+        let ingredientIndex = -1;
+        let randomIngredient;
+
+        randomMeasurementType = (typeof randomMeasurement === 'number' && randomMeasurement > 1) 
+            || (typeof randomMeasurement === 'string' && randomMeasurement.includes(' ')) 
+                ? randomMeasurementType + 's' 
+                : randomMeasurementType;
+
+        if (!ingredientListCopy.length) {
+            ingredientListCopy = [...lists.ingredients];
+        }
+
+        if (isSeriousMode) {
+            randomIngredient = ingredientListCopy.find(({ type }, index) => {
+                if (!chosenIngredientTypes[type]) {
+                    chosenIngredientTypes[type] = true;
+                    ingredientIndex = index;
+
+                    return true;
+                }
+
+                return false;
+            });
+        }
+
+        if (ingredientIndex === -1) {
+            randomIngredient = ingredientListCopy.random();
+            ingredientIndex = ingredientListCopy.indexOf(randomIngredient);
+        }
+
         if (ingredientIndex > -1) {
             ingredientListCopy.splice(ingredientIndex, 1);
         }
@@ -63,7 +93,7 @@ const generateIngredients = (nbIngredients) => {
         });
     }
 
-    return ingredients;
+    return ingredients.shuffle();
 };
 
 const generateMeasurement = measurement => {
@@ -107,7 +137,7 @@ const replaceIngredientPlaceholder = (step, ingredients) => {
     const split = step.split(' ');
     for (let i = 0; i < split.length; i++) {
         if (split[i].includes('{ingredient}')) {
-            split[i] = split[i].replace(/{ingredient}/, ingredients.random().ingredient);
+            split[i] = split[i].replace(/{ingredient}/, ingredients.random().ingredient.name);
         }
     }
 
