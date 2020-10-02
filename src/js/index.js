@@ -40,9 +40,6 @@ const generateRecipe = (event) => {
     for(let i = 0; i < nbSteps; i ++){
         stepsHtmlList.innerHTML += `<li><span>${i + 1}.<span> ${steps[i]}</li>`
     }
-    //steps.forEach(step => {
-        //stepsHtmlList.innerHTML += `<li>${step}</li>`
-    //});
 
     ingredientsRenderElem.appendChild(ingredientsHtmlList);
     stepsRenderElem.appendChild(stepsHtmlList);
