@@ -154,6 +154,18 @@ export const ingredients = [
     { name: 'raspberries', type: fruit },
     { name: 'canola oil', type: fat },
     { name: 'blackberries', type: fruit },
+    { name: 'brie cheese', type: dairy },
+    { name: 'maccagno cheese', type: dairy },
+    { name: 'mozzarella', type: dairy },
+    { name: 'queso fresco', type: dairy },
+    { name: 'ricotta', type: dairy },
+    { name: 'camembert', type: dairy },
+    { name: 'coconut oil', type: fat },
+    { name: 'peanut butter', type: fat },
+    { name: 'condensed milk', type: dairy },
+    { name: 'milk cream', type: dairy },
+    { name: 'corn', type: vegetable },
+    { name: 'shrimp', type: fish },
 ];
 
 export const directions = [
