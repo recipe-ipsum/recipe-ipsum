@@ -11,6 +11,7 @@ const ingredientTypes = {
     condiment: 'condiment',
     fish: 'fish',
     nut: 'nut',
+    fungi: 'fungi',
 };
 
 const {
@@ -26,6 +27,7 @@ const {
     condiment,
     fish,
     nut,
+    fungi,
 } = ingredientTypes;
 
 export const decimals = [
@@ -154,6 +156,17 @@ export const ingredients = [
     { name: 'raspberries', type: fruit },
     { name: 'canola oil', type: fat },
     { name: 'blackberries', type: fruit },
+    { name: 'chimichurri', type: condiment },
+    { name: 'chilli pepper', type: spice },
+    { name: 'champignon', type: fungi },
+    { name: 'shiitake', type: fungi },
+    { name: 'spinach', type: vegetable },
+    { name: 'cilantro', type: herb },
+    { name: 'chive', type: herb },
+    { name: 'mint', type: herb },
+    { name: 'melon', type: herb },
+    { name: 'watermelon', type: fruit },
+    { name: 'codfish', type: fish },
     { name: 'brie cheese', type: dairy },
     { name: 'maccagno cheese', type: dairy },
     { name: 'mozzarella', type: dairy },
