@@ -17,6 +17,7 @@ const ingredientsRenderElem = document.getElementById('ingredientsRender');
 const stepsRenderElem = document.getElementById('stepsRender');
 const ingredientsHtmlList = document.createElement('ul');
 const stepsHtmlList = document.createElement('ol');
+stepsHtmlList.className = "recipe__steps";
 
 nbIngredientsInput.setAttribute('max', lists.ingredients.length.toString());
 nbStepsInput.setAttribute('max', lists.directions.length.toString());
@@ -36,9 +37,12 @@ const generateRecipe = (event) => {
         ingredientsHtmlList.innerHTML += `<li>${ingredient.amount} of ${ingredient.ingredient.name}</li>`
     });
 
-    steps.forEach(step => {
-        stepsHtmlList.innerHTML += `<li>${step}</li>`
-    });
+    for(let i = 0; i < nbSteps; i ++){
+        stepsHtmlList.innerHTML += `<li><span>${i + 1}.<span> ${steps[i]}</li>`
+    }
+    //steps.forEach(step => {
+        //stepsHtmlList.innerHTML += `<li>${step}</li>`
+    //});
 
     ingredientsRenderElem.appendChild(ingredientsHtmlList);
     stepsRenderElem.appendChild(stepsHtmlList);
