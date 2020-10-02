@@ -161,7 +161,6 @@ export const ingredients = [
     { name: 'ricotta', type: dairy },
     { name: 'camembert', type: dairy },
     { name: 'coconut oil', type: fat },
-    { name: 'chickpea', type: vegetable },
     { name: 'peanut butter', type: fat },
     { name: 'condensed milk', type: dairy },
     { name: 'milk cream', type: dairy },
