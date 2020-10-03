@@ -192,19 +192,6 @@ export const ingredients = [
     { name: 'almonds', type: nut },
     { name: 'pecans', type: nut },
     { name: 'walnuts', type: nut },
-    { name: 'sweet potato', type: vegetable },
-    { name: 'squash', type: vegetable },
-    { name: 'brussel sprouts', type: vegetable },
-    { name: 'scallions', type: vegetable },
-    { name: 'mango', type: fruit },
-    { name: 'peach', type: fruit },
-    { name: 'teriyaki sauce', type: condiment },
-    { name: 'mushroom', type: fungi },
-    { name: 'salsa verde', type: condiment },
-    { name: 'bay leaf', type: herb },
-    { name: 'almonds', type: nut },
-    { name: 'pecans', type: nut },
-    { name: 'walnuts', type: nut },
 ];
 
 export const directions = [
