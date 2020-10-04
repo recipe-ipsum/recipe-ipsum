@@ -12,6 +12,7 @@ const ingredientTypes = {
     fish: 'fish',
     nut: 'nut',
     fungi: 'fungi',
+    bakingSupply: 'bakingSupply'
 };
 
 const {
@@ -28,6 +29,7 @@ const {
     fish,
     nut,
     fungi,
+    bakingSupply,
 } = ingredientTypes;
 
 export const decimals = [
@@ -65,8 +67,8 @@ export const ingredients = [
     { name: 'rice', type: carbs },
     { name: 'couscous', type: carbs },
     { name: 'quinoa', type: carbs },
-    { name: 'flour', type: carbs },
-    { name: 'baking powder', type: carbs },
+    { name: 'flour', type: bakingSupply },
+    { name: 'baking powder', type: bakingSupply },
     { name: 'milk', type: dairy },
     { name: 'butter', type: dairy },
     { name: 'egg', type: protein },
@@ -102,7 +104,7 @@ export const ingredients = [
     { name: 'pinto beans', type: vegetable },
     { name: 'trout', type: fish },
     { name: 'salmon', type: fish },
-    { name: 'cornstarch', type: carbs },
+    { name: 'cornstarch', type: bakingSupply },
     { name: 'plain yogurt', type: dairy },
     { name: 'oats', type: carbs },
     { name: 'edamame', type: vegetable },
@@ -227,4 +229,38 @@ export const directions = [
     'Blend {ingredient} into {ingredient}.',
     'Season with {ingredient}.',
     'Heat oil in a deep-fryer or large saucepan to 350 degrees F (175 degrees C).',
+];
+
+export const verbsAndAdjectives = [
+    'Roasted',
+    'Baked',
+    'Fried',
+    'Spicy',
+    'Delicious',
+    'Vegan',
+    'Vegetarian',
+    'Creamy',
+    'Juicy',
+    'Easy',
+    'Healthy',
+    'High Protein',
+    'One-Pot',
+];
+
+export const recipeTypes = [
+    'Cake',
+    'Pie',
+    'Roast',
+    'Nourrish Bowl',
+    'Pizza',
+    'Tacos',
+    'Burrito',
+    'Risotto',
+    'Nuggets',
+    'Salad',
+    'Casserole',
+    'Burger',
+    'Chili',
+    'Sandwich',
+    'Curry',
 ];

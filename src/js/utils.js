@@ -17,3 +17,14 @@ export const decimalToFraction = (decimal) => {
 
     return Math.floor(numerator) + '/' + Math.floor(denominator);
 };
+
+export const capitalizeChars = (initialText) => {
+    const text = initialText.split(' ');
+    let capitalizedText = [];
+
+    for(let i = 0; i < text.length; i++){
+        capitalizedText.push(text[i].charAt(0).toUpperCase() + text[i].slice(1));
+    }
+
+    return capitalizedText.join(' ');
+};
