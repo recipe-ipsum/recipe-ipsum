@@ -18,3 +18,7 @@ and then you are good to go!
 all testing files are located in [cypress/integration](./cypress/integration)
 
 to run tests run `yarn test:open`
+
+### Linting
+to check linting: `yarn lint`
+to fix linting errors: `yarn lint:fix`
