@@ -5,7 +5,7 @@
 *  - every ingredient must be used at least once in the steps
 * */
 import * as lists from './words';
-import {decimalToFraction} from './utils';
+import {decimalToFraction, capitalizeChars} from './utils';
 import {clipboardManager} from './clipboardManager';
 
 const form = document.getElementById('generateRecipeForm');
@@ -15,6 +15,7 @@ const seriousModeInput = document.getElementById('seriousMode');
 
 const ingredientsRenderElem = document.getElementById('ingredientsRender');
 const stepsRenderElem = document.getElementById('stepsRender');
+const recipeHeading = document.createElement('h1');
 const ingredientsHtmlList = document.createElement('ul');
 const stepsHtmlList = document.createElement('ol');
 stepsHtmlList.className = 'recipe__steps';
@@ -24,6 +25,7 @@ nbStepsInput.setAttribute('max', lists.directions.length.toString());
 
 const generateRecipe = (event) => {
     event.preventDefault();
+    recipeHeading.innerHTML = '';
     ingredientsHtmlList.innerHTML = '';
     stepsHtmlList.innerHTML = '';
 
@@ -31,7 +33,10 @@ const generateRecipe = (event) => {
     const nbSteps = parseInt(nbStepsInput.value, 10) || Math.floor((Math.random() * 5) + 1);
 
     const ingredients = generateIngredients(nbIngredients, seriousModeInput.checked);
+    const recipeName = generateRecipeName(ingredients);
     const steps = generateSteps(lists.directions, nbSteps, ingredients);
+
+    recipeHeading.innerHTML = recipeName;
 
     ingredients.forEach(ingredient => {
         ingredientsHtmlList.innerHTML += `<li>${ingredient.amount} of ${ingredient.ingredient.name}</li>`;
@@ -41,6 +46,7 @@ const generateRecipe = (event) => {
         stepsHtmlList.innerHTML += `<li><span>${i + 1}.<span> ${steps[i]}</li>`;
     }
 
+    document.querySelector('.recipe').prepend(recipeHeading);
     ingredientsRenderElem.appendChild(ingredientsHtmlList);
     stepsRenderElem.appendChild(stepsHtmlList);
     document.querySelector('.recipe').classList.remove('hidden');
@@ -98,6 +104,7 @@ const generateIngredients = (nbIngredients, isSeriousMode) => {
 };
 
 const convertMeasurement = (measurement) => {
+    // TODO Optimize this process
     if (measurement === '3 teaspoons') {
         return '1 tablespoon';
     } else if (measurement === '4 tablespoons' || measurement === '12 teaspoons') {
@@ -163,6 +170,27 @@ const generateIngredientsNames = (ingredients) => {
     return ingredients.shuffle().map((ingredient) => {
         return ingredient.ingredient.name;
     });
+};
+
+const generateRecipeName = (ingredients) => {
+    const {verbsAndAdjectives, recipeTypes} = lists;
+    let ingredientsCopy = [...ingredients];
+    let recipeName = '';
+    ingredientsCopy = ingredientsCopy.filter(ingredient =>
+        ingredient.ingredient.type !== 'spice' &&
+        ingredient.ingredient.type !== 'condiment' &&
+        ingredient.ingredient.type !== 'herb' &&
+        ingredient.ingredient.type !== 'fat' &&
+        ingredient.ingredient.type !== 'dairy' &&
+        ingredient.ingredient.type !== 'bakingSupply'
+    );
+
+    if (ingredientsCopy.length > 0) {
+        let ingredient = ingredientsCopy.random();
+        recipeName = `${verbsAndAdjectives.random()} ${capitalizeChars(ingredient.ingredient.name)} ${recipeTypes.random()}`;
+    }
+
+    return recipeName;
 };
 
 const replaceIngredientPlaceholder = (step, usedIngredients) => {
