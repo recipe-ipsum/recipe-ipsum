@@ -5,7 +5,7 @@
 *  - every ingredient must be used at least once in the steps
 * */
 import * as lists from './words';
-import {decimalToFraction} from "./utils";
+import {decimalToFraction} from './utils';
 import {clipboardManager} from './clipboardManager';
 
 const form = document.getElementById('generateRecipeForm');
@@ -17,7 +17,7 @@ const ingredientsRenderElem = document.getElementById('ingredientsRender');
 const stepsRenderElem = document.getElementById('stepsRender');
 const ingredientsHtmlList = document.createElement('ul');
 const stepsHtmlList = document.createElement('ol');
-stepsHtmlList.className = "recipe__steps";
+stepsHtmlList.className = 'recipe__steps';
 
 nbIngredientsInput.setAttribute('max', lists.ingredients.length.toString());
 nbStepsInput.setAttribute('max', lists.directions.length.toString());
@@ -34,16 +34,16 @@ const generateRecipe = (event) => {
     const steps = generateSteps(lists.directions, nbSteps, ingredients);
 
     ingredients.forEach(ingredient => {
-        ingredientsHtmlList.innerHTML += `<li>${ingredient.amount} of ${ingredient.ingredient.name}</li>`
+        ingredientsHtmlList.innerHTML += `<li>${ingredient.amount} of ${ingredient.ingredient.name}</li>`;
     });
 
     for(let i = 0; i < nbSteps; i ++){
-        stepsHtmlList.innerHTML += `<li><span>${i + 1}.<span> ${steps[i]}</li>`
+        stepsHtmlList.innerHTML += `<li><span>${i + 1}.<span> ${steps[i]}</li>`;
     }
 
     ingredientsRenderElem.appendChild(ingredientsHtmlList);
     stepsRenderElem.appendChild(stepsHtmlList);
-    document.querySelector('.recipe').classList.remove('hidden')
+    document.querySelector('.recipe').classList.remove('hidden');
 };
 
 const generateIngredients = (nbIngredients, isSeriousMode) => {
@@ -57,10 +57,10 @@ const generateIngredients = (nbIngredients, isSeriousMode) => {
         let ingredientIndex = -1;
         let randomIngredient;
 
-        randomMeasurementType = (typeof randomMeasurement === 'number' && randomMeasurement > 1) 
-            || (typeof randomMeasurement === 'string' && randomMeasurement.includes(' ')) 
-                ? randomMeasurementType + 's' 
-                : randomMeasurementType;
+        randomMeasurementType = (typeof randomMeasurement === 'number' && randomMeasurement > 1)
+            || (typeof randomMeasurement === 'string' && randomMeasurement.includes(' '))
+            ? randomMeasurementType + 's'
+            : randomMeasurementType;
 
         if (!ingredientListCopy.length) {
             ingredientListCopy = [...lists.ingredients];
@@ -103,7 +103,7 @@ const convertMeasurement = (measurement) => {
     } else if (measurement === '4 tablespoons' || measurement === '12 teaspoons') {
         return '1/4 cup';
     } else if (measurement === '16 tablespoons') {
-        return '1 cup'; 
+        return '1 cup';
     } else if (measurement === '2 cups') {
         return '1 pint';
     } else if (measurement === '2 pints' || measurement === '4 cups') {
@@ -111,7 +111,7 @@ const convertMeasurement = (measurement) => {
     } else {
         return measurement;
     }
-}
+};
 
 const generateMeasurement = measurement => {
     let newMeasurement = measurement;
@@ -150,10 +150,10 @@ const generateSteps = (directions, nbSteps, ingredients) => {
             }
             usedIngredients = notUsedIngredients.splice(0, count);
             randomStep = replaceIngredientPlaceholder(randomStep, usedIngredients);
-                
+
         }
 
-        steps.push(randomStep)
+        steps.push(randomStep);
     }
 
     return steps;
@@ -172,10 +172,22 @@ const replaceIngredientPlaceholder = (step, usedIngredients) => {
             let ingredient = usedIngredients.pop();
             split[i] = split[i].replace(/{ingredient}/, ingredient);
         }
-    };
+    }
 
     return split.join(' ');
 };
 
+const checkForDuplicates = () => {
+    const valueArr = lists.ingredients.map(function(item){ return item.name; });
+    const isDuplicate = valueArr.some(function(item, index){
+        return valueArr.indexOf(item) !== index;
+    });
+
+    if (isDuplicate) {
+        alert('There is a duplicate in the ingredients array, please remove it');
+    }
+};
+
+checkForDuplicates();
 clipboardManager();
 form.addEventListener('submit', generateRecipe);

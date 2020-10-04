@@ -1,21 +1,21 @@
-import ClipboardJS from "clipboard";
+import ClipboardJS from 'clipboard';
 
 export const clipboardManager = () => {
 
     const ingredientsCopy = new ClipboardJS('#copyIngredientsBtn', {
-        text: (trigger) => {
+        text: () => {
             return document.querySelector('#ingredientsRender').innerText;
         }
     });
 
     const stepsCopy = new ClipboardJS('#copyStepsBtn', {
-        text: (trigger) => {
+        text: () => {
             return document.querySelector('#stepsRender').innerText;
         }
     });
 
     const recipeCopy = new ClipboardJS('#copyRecipeBtn', {
-        text: (trigger) => {
+        text: () => {
             const ingredients = document.querySelector('#ingredientsRender').innerText;
             const steps = document.querySelector('#stepsRender').innerText;
             return ingredients + '\n\n' + steps;
