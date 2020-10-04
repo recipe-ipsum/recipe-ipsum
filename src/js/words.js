@@ -11,7 +11,7 @@ const ingredientTypes = {
     condiment: 'condiment',
     fish: 'fish',
     nut: 'nut',
-    fungi: 'fungi',
+    fungi: "fungi",
 };
 
 const {

@@ -5,7 +5,7 @@
 *  - every ingredient must be used at least once in the steps
 * */
 import * as lists from './words';
-import {decimalToFraction} from "./utils";
+import {decimalToFraction} from './utils';
 import {clipboardManager} from './clipboardManager';
 
 const form = document.getElementById('generateRecipeForm');
@@ -17,7 +17,7 @@ const ingredientsRenderElem = document.getElementById('ingredientsRender');
 const stepsRenderElem = document.getElementById('stepsRender');
 const ingredientsHtmlList = document.createElement('ul');
 const stepsHtmlList = document.createElement('ol');
-stepsHtmlList.className = "recipe__steps";
+stepsHtmlList.className = 'recipe__steps';
 
 nbIngredientsInput.setAttribute('max', lists.ingredients.length.toString());
 nbStepsInput.setAttribute('max', lists.directions.length.toString());
@@ -34,16 +34,16 @@ const generateRecipe = (event) => {
     const steps = generateSteps(lists.directions, nbSteps, ingredients);
 
     ingredients.forEach(ingredient => {
-        ingredientsHtmlList.innerHTML += `<li>${ingredient.amount} of ${ingredient.ingredient.name}</li>`
+        ingredientsHtmlList.innerHTML += `<li>${ingredient.amount} of ${ingredient.ingredient.name}</li>`;
     });
 
     for(let i = 0; i < nbSteps; i ++){
-        stepsHtmlList.innerHTML += `<li><span>${i + 1}.<span> ${steps[i]}</li>`
+        stepsHtmlList.innerHTML += `<li><span>${i + 1}.<span> ${steps[i]}</li>`;
     }
 
     ingredientsRenderElem.appendChild(ingredientsHtmlList);
     stepsRenderElem.appendChild(stepsHtmlList);
-    document.querySelector('.recipe').classList.remove('hidden')
+    document.querySelector('.recipe').classList.remove('hidden');
 };
 
 const generateIngredients = (nbIngredients, isSeriousMode) => {
@@ -59,8 +59,8 @@ const generateIngredients = (nbIngredients, isSeriousMode) => {
 
         randomMeasurementType = (typeof randomMeasurement === 'number' && randomMeasurement > 1) 
             || (typeof randomMeasurement === 'string' && randomMeasurement.includes(' ')) 
-                ? randomMeasurementType + 's' 
-                : randomMeasurementType;
+            ? randomMeasurementType + 's' 
+            : randomMeasurementType;
 
         if (!ingredientListCopy.length) {
             ingredientListCopy = [...lists.ingredients];
@@ -111,7 +111,7 @@ const convertMeasurement = (measurement) => {
     } else {
         return measurement;
     }
-}
+};
 
 const generateMeasurement = measurement => {
     let newMeasurement = measurement;
@@ -153,7 +153,7 @@ const generateSteps = (directions, nbSteps, ingredients) => {
                 
         }
 
-        steps.push(randomStep)
+        steps.push(randomStep);
     }
 
     return steps;
@@ -172,7 +172,7 @@ const replaceIngredientPlaceholder = (step, usedIngredients) => {
             let ingredient = usedIngredients.pop();
             split[i] = split[i].replace(/{ingredient}/, ingredient);
         }
-    };
+    }
 
     return split.join(' ');
 };
