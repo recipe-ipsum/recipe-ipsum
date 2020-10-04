@@ -10,7 +10,7 @@ const ingredientTypes = {
     meat: 'meat',
     condiment: 'condiment',
     fish: 'fish',
-    nut: "nut",
+    nut: 'nut',
     fungi: 'fungi',
 };
 

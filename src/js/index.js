@@ -57,9 +57,9 @@ const generateIngredients = (nbIngredients, isSeriousMode) => {
         let ingredientIndex = -1;
         let randomIngredient;
 
-        randomMeasurementType = (typeof randomMeasurement === 'number' && randomMeasurement > 1) 
-            || (typeof randomMeasurement === 'string' && randomMeasurement.includes(' ')) 
-            ? randomMeasurementType + 's' 
+        randomMeasurementType = (typeof randomMeasurement === 'number' && randomMeasurement > 1)
+            || (typeof randomMeasurement === 'string' && randomMeasurement.includes(' '))
+            ? randomMeasurementType + 's'
             : randomMeasurementType;
 
         if (!ingredientListCopy.length) {
@@ -103,7 +103,7 @@ const convertMeasurement = (measurement) => {
     } else if (measurement === '4 tablespoons' || measurement === '12 teaspoons') {
         return '1/4 cup';
     } else if (measurement === '16 tablespoons') {
-        return '1 cup'; 
+        return '1 cup';
     } else if (measurement === '2 cups') {
         return '1 pint';
     } else if (measurement === '2 pints' || measurement === '4 cups') {
@@ -150,7 +150,7 @@ const generateSteps = (directions, nbSteps, ingredients) => {
             }
             usedIngredients = notUsedIngredients.splice(0, count);
             randomStep = replaceIngredientPlaceholder(randomStep, usedIngredients);
-                
+
         }
 
         steps.push(randomStep);
@@ -177,5 +177,17 @@ const replaceIngredientPlaceholder = (step, usedIngredients) => {
     return split.join(' ');
 };
 
+const checkForDuplicates = () => {
+    const valueArr = lists.ingredients.map(function(item){ return item.name; });
+    const isDuplicate = valueArr.some(function(item, index){
+        return valueArr.indexOf(item) !== index;
+    });
+
+    if (isDuplicate) {
+        alert('There is a duplicate in the ingredients array, please remove it');
+    }
+};
+
+checkForDuplicates();
 clipboardManager();
 form.addEventListener('submit', generateRecipe);
