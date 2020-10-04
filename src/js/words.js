@@ -150,7 +150,7 @@ export const ingredients = [
     { name: 'nutmeg', type: spice },
     { name: 'bay leaves', type: spice },
     { name: 'bread crumbs', type: carbs },
-    { name: 'yeast', type: carbs },
+    { name: 'yeast', type: bakingSupply },
     { name: 'heavy cream', type: dairy },
     { name: 'parmesan cheese', type: dairy },
     { name: 'lemon', type: fruit },
@@ -191,6 +191,9 @@ export const ingredients = [
     { name: 'almonds', type: nut },
     { name: 'pecans', type: nut },
     { name: 'walnuts', type: nut },
+    { name: 'oat milk', type: dairy},
+    { name: 'soy milk', type: dairy},
+    { name: 'almond milk', type: dairy},
 ];
 
 export const directions = [
