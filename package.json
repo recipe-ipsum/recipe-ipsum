@@ -13,7 +13,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint src/js/** --fix-dry-run"
+      "pre-commit": "eslint src/js/** --fix"
     }
   },
   "dependencies": {
