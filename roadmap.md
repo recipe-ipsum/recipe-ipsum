@@ -1,5 +1,6 @@
 # Recipe Ipsum's (unclear) roadmap
 
+- Move Repo to recipe-ipsum organization
 - Improve measurment conversion
 - Improve "Serious Mode"
   - Better Name Generation
