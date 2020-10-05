@@ -4,6 +4,8 @@
 # Recipe Ipsum
 ## A nonsensical recipe generator
 
+[How to contribute](CONTRIBUTING.md)
+
 ### install
 
 Make sure you have [yarn](https://yarnpkg.com/) installed
