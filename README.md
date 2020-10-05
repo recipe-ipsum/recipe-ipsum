@@ -4,6 +4,10 @@
 # Recipe Ipsum
 ## A nonsensical recipe generator
 
+[How to contribute](CONTRIBUTING.md)
+
+[Check Out The Roadmap](ROADMAP.md)
+
 ### install
 
 Make sure you have [yarn](https://yarnpkg.com/) installed
@@ -19,6 +23,6 @@ all testing files are located in [cypress/integration](./cypress/integration)
 
 to run tests run `yarn test:open`
 
-### Linting
+### Linting (`yarn lint` runs pre-commit)
 to check linting: `yarn lint`
 to fix linting errors: `yarn lint:fix`
