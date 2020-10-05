@@ -14,21 +14,7 @@
     - Fathom has hundreds of customers and tracks tens of millions of page views per month.
     - Fathom can handle viral content without breaking a sweat, so your site won't slow down because of us.
     -->
-    <script>
-        (function(f, a, t, h, o, m){
-            a[h]=a[h]||function(){
-                (a[h].q=a[h].q||[]).push(arguments)
-            };
-            o=f.createElement('script'),
-                m=f.getElementsByTagName('script')[0];
-            o.async=1; o.src=t; o.id='fathom-script';
-            m.parentNode.insertBefore(o,m)
-        })(document, window, '//stats.hobkit.com/tracker.js', 'fathom');
-        fathom('set', 'siteId', 'ACSSH');
-        if (window.location.hostname !== 'localhost') {
-            fathom('trackPageview');
-        }
-    </script>
+        <script src="https://gerbil.recipe-ipsum.com/script.js" site="ZRIDVEJX" excluded-domains="localhost" defer></script>
     <!-- / Fathom -->
 </head>
 <body>
@@ -48,6 +34,11 @@
                 <div class="form__input-ctn">
                     <label for="nbSteps">Number of Directions: </label>
                     <input type="number" id="nbSteps" min="0">
+                </div>
+
+                <div class="form__input-ctn">
+                    <label for="seriousMode">Serious Mode: </label>
+                    <input type="checkbox" id="seriousMode">
                 </div>
             </details>
 
@@ -84,6 +75,16 @@
 <script>
     Array.prototype.random = function () {
         return this[Math.floor((Math.random()*this.length))];
+    };
+
+    Array.prototype.shuffle = function () {
+        for (let i = this.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [this[i], this[j]] = [this[j], this[i]];
+        }
+
+        return this;
     };
 </script>
 <script src="js/index.js"></script>
