@@ -3,10 +3,11 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](./CONTRIBUTING.md)
 # Recipe Ipsum
 ## A nonsensical recipe generator
+I created this monstrosity, because I was designing a recipe blog and I wanted to generate a fake recipe, I could've just copied and existing recipe, but where's the fun in that? There are lorem ipsum generators for all kinds of topics, why not one that creates recipes?
 
-[How to contribute](CONTRIBUTING.md)
+I understand that I am solving a very niche problem that doesn't really exist, but it's a fun project with a lot of learning opportunities!
 
-[Check Out The Roadmap](ROADMAP.md)
+[How to contribute](CONTRIBUTING.md) | [Check out the "roadmap" (in quotations because it's not really a roadmap)](roadmap.md)
 
 ### install
 
@@ -25,4 +26,5 @@ to run tests run `yarn test:open`
 
 ### Linting (`yarn lint` runs pre-commit)
 to check linting: `yarn lint`
+
 to fix linting errors: `yarn lint:fix`

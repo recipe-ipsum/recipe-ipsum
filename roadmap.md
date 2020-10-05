@@ -1,9 +1,10 @@
-# Recipe Ipsum Roadmap
+# Recipe Ipsum's (unclear) roadmap
 
 - Improve measurment conversion
 - Improve "Serious Mode"
   - Better Name Generation
   - Order Steps
 - Create a seperate repo to turn this into an API
-- Once API is built, change the core recipe ipsum repo to use said API
-- Create a Figma Plugin for Recipe Ipsum (needs API)
+  - Create a docs repo
+  - Switch OG repo to use API
+  - Figma and maybe sketch plugin(s) that utilizes the API
