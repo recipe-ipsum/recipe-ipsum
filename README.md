@@ -7,7 +7,7 @@ I created this monstrosity, because I was designing a recipe blog and I wanted t
 
 I understand that I am solving a very niche problem that doesn't really exist, but it's a fun project with a lot of learning opportunities!
 
-[How to contribute](CONTRIBUTING.md) | [Check out the "roadmap" (in quotations because it's not really a roadmap)](roadmap.md)
+[How to contribute](CONTRIBUTING.md) | [Check out the "roadmap" (in quotations because it's not really a roadmap)](https://www.notion.so/Roadmap-667071679b9c4676ac49188d1cb1a257)
 
 ### install
 
