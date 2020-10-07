@@ -6,7 +6,13 @@
     <meta name="monetization" content="$ilp.uphold.com/BLzR9xapkxgJ">
     <title>Recipe Ipsum</title>
     <link rel="stylesheet" href="scss/styles.scss">
-    <link rel="icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#C0D5E0">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#2b5797">
     <!-- Fathom - simple website analytics - https://usefathom.com/ref/FQZUZM -> Get $10 off your first invoice
     Why you should Switch to Fathom Analytics
     - You don't need to display those pesky cookie notices as they don't use cookies, nor does Fathom track invasive data.
@@ -15,13 +21,13 @@
     - Fathom has hundreds of customers and tracks tens of millions of page views per month.
     - Fathom can handle viral content without breaking a sweat, so your site won't slow down because of us.
     -->
-        <script src="https://gerbil.recipe-ipsum.com/script.js" site="ZRIDVEJX" defer></script>
+        <script src="https://gerbil.recipe-ipsum.com/script.js" site="EYWMPITF" excluded-domains="localhost" defer></script>
     <!-- / Fathom -->
 </head>
 <body>
 <main>
     <div>
-        <h1>Recipe Ipsum</h1>
+        <p class="title"><img src="safari-pinned-tab.svg" alt="logo"> Recipe Ipsum</p>
         <p>This monstrosity generates completely nonsensical recipes, enjoy!</p>
         <p>This goes without saying, but please don't make any of these recipes.</p>
         <form class="form" name="generateRecipeForm" id="generateRecipeForm" novalidate>
@@ -35,6 +41,11 @@
                 <div class="form__input-ctn">
                     <label for="nbSteps">Number of Directions: </label>
                     <input type="number" id="nbSteps" min="0">
+                </div>
+
+                <div class="form__input-ctn">
+                    <label for="seriousMode">Serious Mode: </label>
+                    <input type="checkbox" id="seriousMode">
                 </div>
             </details>
 
@@ -71,6 +82,16 @@
 <script>
     Array.prototype.random = function () {
         return this[Math.floor((Math.random()*this.length))];
+    };
+
+    Array.prototype.shuffle = function () {
+        for (let i = this.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [this[i], this[j]] = [this[j], this[i]];
+        }
+
+        return this;
     };
 </script>
 <script src="js/index.js"></script>
