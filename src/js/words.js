@@ -1,4 +1,4 @@
-const ingredientTypes = {
+export const ingredientTypes = {
     spice: 'spice',
     herb: 'herb',
     carbs: 'carbs',
@@ -14,6 +14,12 @@ const ingredientTypes = {
     fungi: 'fungi',
     bakingSupply: 'bakingSupply'
 };
+
+export const stepPositions = {
+    start: 'start',
+    middle: 'middle',
+    end: 'end',
+}
 
 const {
     spice,
@@ -31,6 +37,12 @@ const {
     fungi,
     bakingSupply,
 } = ingredientTypes;
+
+const {
+    start,
+    middle,
+    end,
+} = stepPositions;
 
 export const decimals = [
     0, 0.25, 0.5, 0.3, 0.8, 0.75
@@ -196,43 +208,113 @@ export const ingredients = [
     { name: 'almond milk', type: dairy},
 ];
 
-export const directions = [
-    'Stir in the {ingredient} with the rest of the ingredients.',
-    'Cook on high heat until browned and fragrant.',
-    'Let sit for 10 minutes before serving.',
-    'Preheat oven to 375°F.',
-    'Line baking sheet with foil.',
-    'Place {ingredient} in bowl and season with {ingredient} and {ingredient}, Toss with rubber spatula to thoroughly coat {ingredient} with oil and seasonings.',
-    'Arrange {ingredient} on baking sheet.',
-    'Roast {ingredient} on middle rack of oven until it is slightly brown, 20-30 minutes.',
-    'Check to see that {ingredient} is done. Remove from oven or add time as needed.',
-    'Transfer to a plate and serve immediately.',
-    'Blend the {ingredient} and {ingredient} in a food processor for a few seconds, until the mixture looks like breadcrumbs.',
-    'Stir in the {ingredient} and the {ingredient} and sprinkle over the cooked {ingredient} in the pie dish. Transfer to the oven to bake for 30 minutes or until crisp and golden-brown on top.',
-    'In a large pot over medium high heat, add the {ingredient}, {ingredient}, {ingredient}, and {ingredient}. Sauté until tender 4-5 minutes. Add the {ingredient}, {ingredient}, and {ingredient} and {ingredient} and {ingredient} for 1 minute more.',
-    'Bake the {ingredient} in a preheated 200°F oven for 20 minutes until they are soft. Remove from oven and once cool enough to handle, peel.',
-    'Store it in an airtight container and freeze it for up to 6 months.',
-    'Adjust the flavorings and add the {ingredient} if the {ingredient} is too acidic.',
-    'Check occasionally and add a bit of {ingredient}, if you need to.',
-    'Stir in fresh {ingredient} and serve the {ingredient} over {ingredient}.',
-    'Mix the first two ingredients in a large bowl.',
-    'Grease the pan with butter.',
-    'In a small bowl, mix together the {ingredient} and {ingredient}.',
-    'Use an electric mixer to mix the {ingredient}, {ingredient} and {ingredient}.',
-    'Put the {ingredient}, {ingredient} and {ingredient} in your food processor and chop to a pulp.',
-    'Boil {ingredient} for 10 minutes.',
-    'Cook {ingredient} in water bath for 40-50 minutes.',
-    'Fry {ingredient} until golden brown.',
-    'Preheat the oven.',
-    'Combine the {ingredient}, {ingredient}, {ingredient} and {ingredient} in a pot and place over medium heat.',
-    'Bring to a simmer while stirring with a whisk.',
-    'As soon as the {ingredient} begins to bubble on the sides of the pot, remove from heat, and set aside for use.',
-    'Drop by tablespoonfuls onto {ingredient} sheets.',
-    'Reduce heat to low.',
-    'Blend {ingredient} into {ingredient}.',
-    'Season with {ingredient}.',
-    'Heat oil in a deep-fryer or large saucepan to 350 degrees F (175 degrees C).',
-];
+export const directions = [{ 
+    text: 'Stir in the {ingredient} with the rest of the ingredients.',
+    position: middle, 
+}, { 
+    text: 'Cook on high heat until browned and fragrant.',
+    position: end, 
+}, { 
+    text: 'Let sit for 10 minutes before serving.',
+    position: end, 
+}, { 
+    text: 'Preheat oven to 375°F.',
+    position: start, 
+}, { 
+    text: 'Line baking sheet with foil.',
+    position: start, 
+}, { 
+    text: 'Place {ingredient} in bowl and season with {ingredient} and {ingredient}, Toss with rubber spatula to thoroughly coat {ingredient} with oil and seasonings.',
+    position: middle, 
+}, { 
+    text: 'Arrange {ingredient} on baking sheet.',
+    position: start, 
+}, { 
+    text: 'Roast {ingredient} on middle rack of oven until it is slightly brown, 20-30 minutes.',
+    position: middle, 
+}, { 
+    text: 'Check to see that {ingredient} is done. Remove from oven or add time as needed.',
+    position: end, 
+}, { 
+    text: 'Transfer to a plate and serve immediately.',
+    position: end, 
+}, { 
+    text: 'Blend the {ingredient} and {ingredient} in a food processor for a few seconds, until the mixture looks like breadcrumbs.',
+    position: start, 
+}, { 
+    text: 'Stir in the {ingredient} and the {ingredient} and sprinkle over the cooked {ingredient} in the pie dish. Transfer to the oven to bake for 30 minutes or until crisp and golden-brown on top.',
+    position: middle, 
+}, { 
+    text: 'In a large pot over medium high heat, add the {ingredient}, {ingredient}, {ingredient}, and {ingredient}. Sauté until tender 4-5 minutes. Add the {ingredient}, {ingredient}, and {ingredient} and {ingredient} and {ingredient} for 1 minute more.',
+    position: middle, 
+}, { 
+    text: 'Bake the {ingredient} in a preheated 200°F oven for 20 minutes until they are soft. Remove from oven and once cool enough to handle, peel.',
+    position: middle, 
+}, { 
+    text: 'Store it in an airtight container and freeze it for up to 6 months.',
+    position: end, 
+}, { 
+    text: 'Adjust the flavorings and add the {ingredient} if the {ingredient} is too acidic.',
+    position: end, 
+}, { 
+    text: 'Check occasionally and add a bit of {ingredient}, if you need to.',
+    position: middle, 
+}, { 
+    text: 'Stir in fresh {ingredient} and serve the {ingredient} over {ingredient}.',
+    position: end, 
+}, { 
+    text: 'Mix the first two ingredients in a large bowl.',
+    position: start, 
+}, { 
+    text: 'Grease the pan with butter.',
+    position: start, 
+}, { 
+    text: 'In a small bowl, mix together the {ingredient} and {ingredient}.',
+    position: start, 
+}, { 
+    text: 'Use an electric mixer to mix the {ingredient}, {ingredient} and {ingredient}.',
+    position: start, 
+}, { 
+    text: 'Put the {ingredient}, {ingredient} and {ingredient} in your food processor and chop to a pulp.',
+    position: start, 
+}, { 
+    text: 'Boil {ingredient} for 10 minutes.',
+    position: middle, 
+}, { 
+    text: 'Cook {ingredient} in water bath for 40-50 minutes.',
+    position: middle, 
+}, { 
+    text: 'Fry {ingredient} until golden brown.',
+    position: middle, 
+}, { 
+    text: 'Preheat the oven.',
+    position: start, 
+}, { 
+    text: 'Combine the {ingredient}, {ingredient}, {ingredient} and {ingredient} in a pot and place over medium heat.',
+    position: middle, 
+}, { 
+    text: 'Bring to a simmer while stirring with a whisk.',
+    position: middle, 
+}, { 
+    text: 'As soon as the {ingredient} begins to bubble on the sides of the pot, remove from heat, and set aside for use.',
+    position: middle, 
+}, { 
+    text: 'Drop by tablespoonfuls onto {ingredient} sheets.',
+    position: start, 
+}, { 
+    text: 'Reduce heat to low.',
+    position: middle, 
+}, { 
+    text: 'Blend {ingredient} into {ingredient}.',
+    position: start, 
+}, { 
+    text: 'Season with {ingredient}.',
+    position: end, 
+}, { 
+    text: 'Heat oil in a deep-fryer or large saucepan to 350 degrees F (175 degrees C).',
+    position: start, 
+}];
+ 
 
 export const verbsAndAdjectives = [
     'Roasted',
