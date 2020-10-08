@@ -179,7 +179,7 @@ const generateSteps = (nbSteps, ingredients, isSeriousMode) => {
             stepListCopy.splice(stepIndex, 1);
         }
 
-        const { text } = randomStep;
+        let { text } = randomStep;
 
         if (text.includes('{ingredient}')) {
             const count = (text.match(/\{ingredient\}/g)).length;

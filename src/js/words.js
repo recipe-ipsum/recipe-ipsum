@@ -19,7 +19,7 @@ export const stepPositions = {
     start: 'start',
     middle: 'middle',
     end: 'end',
-}
+};
 
 const {
     spice,
