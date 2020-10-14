@@ -31,10 +31,12 @@ const generateRecipe = (event) => {
 
     const nbIngredients = parseInt(nbIngredientsInput.value, 10) || Math.floor((Math.random() * 10) + 1);
     const nbSteps = parseInt(nbStepsInput.value, 10) || Math.floor((Math.random() * 5) + 1);
+   
+    const isSeriousMode = seriousModeInput.checked;
 
-    const ingredients = generateIngredients(nbIngredients, seriousModeInput.checked);
+    const ingredients = generateIngredients(nbIngredients, isSeriousMode);
     const recipeName = generateRecipeName(ingredients);
-    const steps = generateSteps(lists.directions, nbSteps, ingredients);
+    const steps = generateSteps(nbSteps, ingredients, isSeriousMode);
 
     recipeHeading.innerHTML = recipeName;
 
@@ -73,7 +75,7 @@ const generateIngredients = (nbIngredients, isSeriousMode) => {
         }
 
         if (isSeriousMode) {
-            randomIngredient = ingredientListCopy.find(({ type }, index) => {
+            randomIngredient = ingredientListCopy.shuffle().find(({ type }, index) => {
                 if (!chosenIngredientTypes[type]) {
                     chosenIngredientTypes[type] = true;
                     ingredientIndex = index;
@@ -135,32 +137,63 @@ const generateMeasurement = measurement => {
     return newMeasurement;
 };
 
-const generateSteps = (directions, nbSteps, ingredients) => {
+const generateSteps = (nbSteps, ingredients, isSeriousMode) => {
     const steps = [];
-    const stepListCopy = [...directions];
+    const stepListCopy = [...lists.directions];
     let notUsedIngredients = generateIngredientsNames(ingredients);
+    const stepCountForEachPosition = Math.ceil(nbSteps / Object.entries(lists.stepPositions).length);
+    const stepPositions = Object.values(lists.stepPositions);
+    let positionPointer = 0;
+    let counter = 0;
 
     for (let i = 0; i < nbSteps; i++) {
-        let randomStep = stepListCopy.random();
-        const stepIndex = stepListCopy.indexOf(randomStep);
+        let stepIndex = -1;
+        let randomStep;
+
+        if (isSeriousMode) {
+            randomStep = stepListCopy.shuffle().find(({ position }, index) => {
+                if (position !== stepPositions[positionPointer]) {
+                    return false;
+                }
+
+                if (counter === stepCountForEachPosition) {
+                    positionPointer += 1;
+                    counter = 0;
+
+                    return false;
+                }
+
+                counter += 1;
+                stepIndex = index;
+
+                return true;
+            });
+        }
+
+        if (stepIndex === -1) {
+            randomStep = stepListCopy.random();
+            stepIndex = stepListCopy.indexOf(text);
+        }
 
         if (stepIndex > -1) {
             stepListCopy.splice(stepIndex, 1);
         }
 
-        if (randomStep.includes('{ingredient}')) {
-            const count = (randomStep.match(/\{ingredient\}/g)).length;
+        let { text } = randomStep;
+
+        if (text.includes('{ingredient}')) {
+            const count = (text.match(/\{ingredient\}/g)).length;
             let usedIngredients;
 
             if (notUsedIngredients.length <= count){
                 notUsedIngredients = generateIngredientsNames(ingredients);
             }
-            usedIngredients = notUsedIngredients.splice(0, count);
-            randomStep = replaceIngredientPlaceholder(randomStep, usedIngredients);
 
+            usedIngredients = notUsedIngredients.splice(0, count);
+            text = replaceIngredientPlaceholder(text, usedIngredients);
         }
 
-        steps.push(randomStep);
+        steps.push(text);
     }
 
     return steps;
@@ -173,16 +206,17 @@ const generateIngredientsNames = (ingredients) => {
 };
 
 const generateRecipeName = (ingredients) => {
-    const {verbsAndAdjectives, recipeTypes} = lists;
+    const {verbsAndAdjectives, recipeTypes, ingredientTypes} = lists;
     let ingredientsCopy = [...ingredients];
     let recipeName = '';
-    ingredientsCopy = ingredientsCopy.filter(ingredient =>
-        ingredient.ingredient.type !== 'spice' &&
-        ingredient.ingredient.type !== 'condiment' &&
-        ingredient.ingredient.type !== 'herb' &&
-        ingredient.ingredient.type !== 'fat' &&
-        ingredient.ingredient.type !== 'dairy' &&
-        ingredient.ingredient.type !== 'bakingSupply'
+
+    ingredientsCopy = ingredientsCopy.filter(({ ingredient }) =>
+        ingredient.type !== ingredientTypes.spice &&
+        ingredient.type !== ingredientTypes.condiment &&
+        ingredient.type !== ingredientTypes.herb &&
+        ingredient.type !== ingredientTypes.fat &&
+        ingredient.type !== ingredientTypes.dairy &&
+        ingredient.type !== ingredientTypes.bakingSupply
     );
 
     if (ingredientsCopy.length > 0) {
