@@ -1,9 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Raleway:wght@400;500&display=swap');
 
-$font-family: 'Noto Sans', sans-serif;
-$colour-primary: #001D4A;
-$colour-primary-light: #00399e;
-$colour-primary-lighter: #148ac6;
+$font-family-body: 'Raleway', sans-serif;
+$font-family-heading: 'Playfair Display', serif;
+$colour-light-grey: #F9F8F8;
+$colour-primary: #C0D5E0;
+$colour-primary-dark: #1B2D37;
+$colour-secondary: #00399e;
+$colour-secondary-light: #148ac6;
+$box-shadow: 0 4px 6px rgba(159, 191, 208, 0.25);
+$transition: ease 0.35s;
 
 :root {
     font-size: 10px;
@@ -14,11 +19,18 @@ html {
     min-height: 100%;
 }
 
+.header {
+    max-width: 405px;
+    margin: 0 auto;
+}
+
 .title {
-    font-size: 2em;
+    font-size: 6.4rem;
+    margin: 0;
     font-weight: bold;
     display: flex;
     align-items: center;
+    font-family: $font-family-heading;
 
     img {
         margin-right: 1rem;
@@ -28,22 +40,24 @@ html {
 
 a {
     &:link, &:visited {
-        transition: all ease 0.35s;
-        color: $colour-primary-light;
+        transition: color $transition;
+        color: $colour-secondary;
         text-decoration: none;
         font-weight: 700;
     }
 
     &:hover, &:focus {
-        color: $colour-primary-lighter;
+        color: $colour-secondary-light;
     }
 }
 
 body {
-    font-family: $font-family;
-    background-color: #F9F8F8;
+    font-family: $font-family-body;
+    background-color: $colour-light-grey;
+    background-image: url("../pattern.png");
     font-size: 1.6rem;
     margin: 0;
+    color: $colour-primary-dark;
 }
 
 main, footer {
@@ -55,11 +69,11 @@ main, footer {
 }
 
 main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     min-height: 95vh;
     flex-grow: 1;
+    @media (min-width: 1200px) {
+        max-width: 60vw;
+    }
 }
 
 footer {
@@ -82,7 +96,7 @@ button {
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    font-family: $font-family;
+    font-family: $font-family-body;
     font-size: 1.4rem;
 
     &:focus {
@@ -90,19 +104,44 @@ button {
     }
 }
 
-.form {
-    details {
-        margin: 0 0 2rem;
-        summary {
-            cursor: pointer;
-            color: $colour-primary-light;
-            &:hover, &:focus {
-                outline: none;
-                color: $colour-primary-lighter;
-            }
+.button {
+    padding: 10px 15px;
+    border-radius: 50px;
+    border: 4px solid;
+    color: $colour-primary-dark;
+    font-weight: 500;
+    box-shadow: $box-shadow;
+    transition: background-color $transition, border-color $transition;
+
+    &--primary {
+        background-color: $colour-primary;
+        border-color: $colour-primary;
+
+        &:hover, &:focus {
+            background-color: darken($colour-primary, 5%);
+            border-color: darken($colour-primary, 5%);
         }
     }
 
+    &--secondary {
+        background-color: $colour-light-grey;
+        border-color: $colour-primary;
+
+        &:hover, &:focus {
+            background-color: darken(desaturate($colour-light-grey, 100%), 5%);
+            border-color: darken($colour-primary, 5%);
+        }
+    }
+}
+
+.config-container {
+    background-color: #F5F8FA;
+    box-shadow: $box-shadow;
+    padding: 0.1rem 2rem;
+    margin: 2rem 0 1rem;
+}
+
+.form {
     &__input-ctn {
         margin: 2rem 0;
         label {
@@ -112,23 +151,10 @@ button {
 
         input {
             font-size: 1.6rem;
-            border: 2px solid #000000;
+            border: 1px solid $colour-primary-dark;
             border-radius: 5px;
+            width: 50px;
         }
-    }
-}
-
-.submit-button {
-    padding: 0.5rem 1rem;
-    text-align: center;
-    font-size: 1.6rem;
-    color: #ffffff;
-    background: $colour-primary;
-    transition: all ease 0.35s;
-
-    &:hover, &:focus {
-        transform: rotate(-2deg);
-        background-color: $colour-primary-light;
     }
 }
 
@@ -138,23 +164,36 @@ button {
 
 .copy-button {
     font-weight: bold;
-    color: $colour-primary-light;
-    transition: all ease 0.35s;
+    color: $colour-secondary;
+    transition: color $transition;
+    margin-left: 3rem;
 
     &:hover, &:focus {
-        color: $colour-primary-lighter;
+        color: $colour-secondary-light;
     }
 }
 
 .tooltip {
     font-size: 1.1rem;
     opacity: 0;
-    transition: all ease 0.35s;
+    transition: opacity $transition;
     font-weight: 700;
+    margin-left: 1rem;
 
     &--is-active {
         opacity: 1;
     }
+}
+
+.recipe__header {
+    display: flex;
+    align-items: center;
+}
+
+.recipe__name h2 {
+    font-family: $font-family-heading;
+    font-size: 3.6rem;
+    margin: 1rem 0;
 }
 
 .recipe__steps ol {
