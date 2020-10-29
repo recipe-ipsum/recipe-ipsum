@@ -18,7 +18,7 @@ const seriousModeInput = document.getElementById('seriousMode');
 const nameRenderElem = document.getElementById('nameRender');
 const ingredientsRenderElem = document.getElementById('ingredientsRender');
 const stepsRenderElem = document.getElementById('stepsRender');
-const recipeHeading = document.createElement('h1');
+const recipeHeading = document.createElement('h2');
 const ingredientsHtmlList = document.createElement('ul');
 const stepsHtmlList = document.createElement('ol');
 stepsHtmlList.className = 'recipe__steps';
@@ -52,7 +52,8 @@ const generateRecipe = (event) => {
         nameRenderElem.classList.add('hidden');
     } else {
         nameRenderElem.classList.remove('hidden');
-        nameRenderElem.querySelector('h2').innerHTML = recipeName;
+        recipeHeading.innerHTML = recipeName;
+        nameRenderElem.querySelector('.recipe__header').prepend(recipeHeading);
     }
 
     ingredientsRenderElem.appendChild(ingredientsHtmlList);
