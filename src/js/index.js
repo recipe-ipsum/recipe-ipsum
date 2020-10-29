@@ -28,11 +28,10 @@ const generateRecipe = (event) => {
     recipeHeading.innerHTML = '';
     ingredientsHtmlList.innerHTML = '';
     stepsHtmlList.innerHTML = '';
-
-    const nbIngredients = parseInt(nbIngredientsInput.value, 10) || Math.floor((Math.random() * 10) + 1);
-    const nbSteps = parseInt(nbStepsInput.value, 10) || Math.floor((Math.random() * 5) + 1);
-   
     const isSeriousMode = seriousModeInput.checked;
+
+    const nbIngredients = parseInt(nbIngredientsInput.value, 10) || Math.floor((Math.random() * 10) + (isSeriousMode ? 3 : 1));
+    const nbSteps = parseInt(nbStepsInput.value, 10) || Math.floor((Math.random() * 5) + (isSeriousMode ? 2 : 1));
 
     const ingredients = generateIngredients(nbIngredients, isSeriousMode);
     const recipeName = generateRecipeName(ingredients);
