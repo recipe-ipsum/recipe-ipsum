@@ -27,11 +27,13 @@
 <body>
 <main>
     <div class="header">
-        <p class="title">Recipe Ipsum</p>
+        <h1 class="title">Recipe Ipsum</h1>
         <h2>A nonsensical recipe generator</h2>
         <form class="form" name="generateRecipeForm" id="generateRecipeForm" novalidate>
-            <button class="button button--secondary" type="button" id="customizeConfigBtn" >Customize Configuration</button>
-            <button class="button button--primary" type="submit" id="genrateRecipeBtn">Generate Recipe</button>
+            <div class="form__button-ctn">
+                <button class="button button--secondary" type="button" id="customizeConfigBtn" ><span>Customize Configuration</span></button>
+                <button class="button button--primary" type="submit" id="genrateRecipeBtn"><span>Generate Recipe</span></button>
+            </div>
             <div id="config" class="config-container hidden">
                 <div class="form__input-ctn">
                     <label for="nbIngredients">Number of ingredients: </label>
