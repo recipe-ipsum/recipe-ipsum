@@ -10,9 +10,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#C0D5E0">
-    <meta name="msapplication-TileColor" content="#2b5797">
-    <meta name="theme-color" content="#2b5797">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#1b2d37">
+    <meta name="msapplication-TileColor" content="#c0d5e0">
+    <meta name="theme-color" content="#c0d5e0">
     <!-- Fathom - simple website analytics - https://usefathom.com/ref/FQZUZM -> Get $10 off your first invoice
     Why you should Switch to Fathom Analytics
     - You don't need to display those pesky cookie notices as they don't use cookies, nor does Fathom track invasive data.
@@ -26,13 +26,15 @@
 </head>
 <body>
 <main>
-    <div>
-        <p class="title"><img src="safari-pinned-tab.svg" alt="logo"> Recipe Ipsum</p>
-        <p>This monstrosity generates completely nonsensical recipes, enjoy!</p>
-        <p>This goes without saying, but please don't make any of these recipes.</p>
+    <div class="header">
+        <h1 class="title">Recipe Ipsum</h1>
+        <h2>A nonsensical recipe generator</h2>
         <form class="form" name="generateRecipeForm" id="generateRecipeForm" novalidate>
-            <details>
-                <summary>Customize number of ingredients and directions</summary>
+            <div class="form__button-ctn">
+                <button class="button button--secondary" type="button" id="customizeConfigBtn" ><span>Customize Configuration</span></button>
+                <button class="button button--primary" type="submit" id="genrateRecipeBtn"><span>Generate Recipe</span></button>
+            </div>
+            <div id="config" class="config-container hidden">
                 <div class="form__input-ctn">
                     <label for="nbIngredients">Number of ingredients: </label>
                     <input type="number" id="nbIngredients" min="1">
@@ -44,33 +46,37 @@
                 </div>
 
                 <div class="form__input-ctn">
-                    <label for="seriousMode">Serious Mode: </label>
+                    <label for="seriousMode">Somewhat Coherent Mode: </label>
                     <input type="checkbox" id="seriousMode">
                 </div>
-            </details>
-
-            <button class="submit-button" type="submit" id="genrateRecipeBtn">Generate Recipe</button>
+            </div>
         </form>
-        <div class="recipe hidden">
-            <div id="ingredientsRender" class="recipe__ingredients">
-                <h2>Ingredients</h2>
-            </div>
-            <div>
-                <button id="copyIngredientsBtn" data-clipboard-action="copy" class="copy-button">Copy ingredients to clipboard</button>
+    </div>
+    <div class="recipe hidden">
+        <div id="nameRender" class="recipe__name">
+            <div class="recipe__header">
+                <button id="copyNameBtn" data-clipboard-action="copy" class="copy-button">Copy name</button>
                 <span class="tooltip">Copied</span>
             </div>
-            <div id="stepsRender" class="recipe__steps">
-                <h2>Directions</h2>
-            </div>
-            <div>
-                <button id="copyStepsBtn" data-clipboard-action="copy" class="copy-button">Copy directions to clipboard</button>
+        </div>
+        <div id="ingredientsRender" class="recipe__ingredients">
+            <div class="recipe__header">
+                <h3>Ingredients</h3>
+                <button id="copyIngredientsBtn" data-clipboard-action="copy" class="copy-button">Copy ingredients</button>
                 <span class="tooltip">Copied</span>
             </div>
+        </div>
+        <div id="stepsRender" class="recipe__steps">
+            <div class="recipe__header">
+                <h3>Directions</h3>
+                <button id="copyStepsBtn" data-clipboard-action="copy" class="copy-button">Copy directions</button>
+                <span class="tooltip">Copied</span>
+            </div>
+        </div>
 
-            <div class="copy-recipe-ctn">
-                <button id="copyRecipeBtn" data-clipboard-action="copy" class="copy-button">Copy full recipe to clipboard</button>
-                <span class="tooltip">Copied</span>
-            </div>
+        <div class="copy-recipe-ctn">
+            <button id="copyRecipeBtn" data-clipboard-action="copy" class="copy-button">Copy recipe</button>
+            <span class="tooltip">Copied</span>
         </div>
     </div>
 </main>

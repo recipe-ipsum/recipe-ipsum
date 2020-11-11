@@ -15,7 +15,7 @@ export const decimalToFraction = (decimal) => {
     numerator /= divisor;                         // Should be 687
     denominator /= divisor;                       // Should be 2000
 
-    return Math.floor(numerator) + '/' + Math.floor(denominator);
+    return `${Math.floor(numerator)}/${Math.floor(denominator)}`;
 };
 
 export const capitalizeChars = (initialText) => {
