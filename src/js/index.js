@@ -9,13 +9,16 @@ import {decimalToFraction, capitalizeChars} from './utils';
 import {clipboardManager} from './clipboardManager';
 
 const form = document.getElementById('generateRecipeForm');
+const customizeConfigBtn = document.getElementById('customizeConfigBtn');
+const config = document.getElementById('config');
 const nbIngredientsInput = document.getElementById('nbIngredients');
 const nbStepsInput = document.getElementById('nbSteps');
 const seriousModeInput = document.getElementById('seriousMode');
 
+const nameRenderElem = document.getElementById('nameRender');
 const ingredientsRenderElem = document.getElementById('ingredientsRender');
 const stepsRenderElem = document.getElementById('stepsRender');
-const recipeHeading = document.createElement('h1');
+const recipeHeading = document.createElement('h2');
 const ingredientsHtmlList = document.createElement('ul');
 const stepsHtmlList = document.createElement('ol');
 stepsHtmlList.className = 'recipe__steps';
@@ -28,15 +31,14 @@ const generateRecipe = (event) => {
     recipeHeading.innerHTML = '';
     ingredientsHtmlList.innerHTML = '';
     stepsHtmlList.innerHTML = '';
+    const isSeriousMode = seriousModeInput.checked;
 
-    const nbIngredients = parseInt(nbIngredientsInput.value, 10) || Math.floor((Math.random() * 10) + 1);
-    const nbSteps = parseInt(nbStepsInput.value, 10) || Math.floor((Math.random() * 5) + 1);
+    const nbIngredients = parseInt(nbIngredientsInput.value, 10) || Math.floor((Math.random() * 10) + (isSeriousMode ? 3 : 1));
+    const nbSteps = parseInt(nbStepsInput.value, 10) || Math.floor((Math.random() * 5) + (isSeriousMode ? 2 : 1));
 
-    const ingredients = generateIngredients(nbIngredients, seriousModeInput.checked);
+    const ingredients = generateIngredients(nbIngredients, isSeriousMode);
     const recipeName = generateRecipeName(ingredients);
-    const steps = generateSteps(lists.directions, nbSteps, ingredients);
-
-    recipeHeading.innerHTML = recipeName;
+    const steps = generateSteps(nbSteps, ingredients, isSeriousMode);
 
     ingredients.forEach(ingredient => {
         ingredientsHtmlList.innerHTML += `<li>${ingredient.amount} of ${ingredient.ingredient.name}</li>`;
@@ -46,7 +48,14 @@ const generateRecipe = (event) => {
         stepsHtmlList.innerHTML += `<li><span>${i + 1}.<span> ${steps[i]}</li>`;
     }
 
-    document.querySelector('.recipe').prepend(recipeHeading);
+    if (recipeName === '') {
+        nameRenderElem.classList.add('hidden');
+    } else {
+        nameRenderElem.classList.remove('hidden');
+        recipeHeading.innerHTML = recipeName;
+        nameRenderElem.querySelector('.recipe__header').prepend(recipeHeading);
+    }
+
     ingredientsRenderElem.appendChild(ingredientsHtmlList);
     stepsRenderElem.appendChild(stepsHtmlList);
     document.querySelector('.recipe').classList.remove('hidden');
@@ -73,7 +82,7 @@ const generateIngredients = (nbIngredients, isSeriousMode) => {
         }
 
         if (isSeriousMode) {
-            randomIngredient = ingredientListCopy.find(({ type }, index) => {
+            randomIngredient = ingredientListCopy.shuffle().find(({ type }, index) => {
                 if (!chosenIngredientTypes[type]) {
                     chosenIngredientTypes[type] = true;
                     ingredientIndex = index;
@@ -129,38 +138,69 @@ const generateMeasurement = measurement => {
     if (Math.floor(Math.random() * 2) === 0) {
         newMeasurement = measurement === 0 ? randomInt : fraction;
     } else {
-        newMeasurement = measurement === 0 ? randomInt  : `${randomInt.toString()} ${fraction}`;
+        newMeasurement = measurement === 0 ? randomInt  : `${randomInt.toString()} <sup>${fraction}</sup>`;
     }
 
     return newMeasurement;
 };
 
-const generateSteps = (directions, nbSteps, ingredients) => {
+const generateSteps = (nbSteps, ingredients, isSeriousMode) => {
     const steps = [];
-    const stepListCopy = [...directions];
+    const stepListCopy = [...lists.directions];
     let notUsedIngredients = generateIngredientsNames(ingredients);
+    const stepCountForEachPosition = Math.ceil(nbSteps / Object.entries(lists.stepPositions).length);
+    const stepPositions = Object.values(lists.stepPositions);
+    let positionPointer = 0;
+    let counter = 0;
 
     for (let i = 0; i < nbSteps; i++) {
-        let randomStep = stepListCopy.random();
-        const stepIndex = stepListCopy.indexOf(randomStep);
+        let stepIndex = -1;
+        let randomStep;
+
+        if (isSeriousMode) {
+            randomStep = stepListCopy.shuffle().find(({ position }, index) => {
+                if (position !== stepPositions[positionPointer]) {
+                    return false;
+                }
+
+                if (counter === stepCountForEachPosition) {
+                    positionPointer += 1;
+                    counter = 0;
+
+                    return false;
+                }
+
+                counter += 1;
+                stepIndex = index;
+
+                return true;
+            });
+        }
+
+        if (stepIndex === -1) {
+            randomStep = stepListCopy.random();
+            stepIndex = stepListCopy.indexOf(text);
+        }
 
         if (stepIndex > -1) {
             stepListCopy.splice(stepIndex, 1);
         }
 
-        if (randomStep.includes('{ingredient}')) {
-            const count = (randomStep.match(/\{ingredient\}/g)).length;
+        let { text } = randomStep;
+
+        if (text.includes('{ingredient}')) {
+            const count = (text.match(/\{ingredient\}/g)).length;
             let usedIngredients;
 
             if (notUsedIngredients.length <= count){
                 notUsedIngredients = generateIngredientsNames(ingredients);
             }
-            usedIngredients = notUsedIngredients.splice(0, count);
-            randomStep = replaceIngredientPlaceholder(randomStep, usedIngredients);
 
+            usedIngredients = notUsedIngredients.splice(0, count);
+            text = replaceIngredientPlaceholder(text, usedIngredients);
         }
 
-        steps.push(randomStep);
+        steps.push(text);
     }
 
     return steps;
@@ -173,16 +213,17 @@ const generateIngredientsNames = (ingredients) => {
 };
 
 const generateRecipeName = (ingredients) => {
-    const {verbsAndAdjectives, recipeTypes} = lists;
+    const {verbsAndAdjectives, recipeTypes, ingredientTypes} = lists;
     let ingredientsCopy = [...ingredients];
     let recipeName = '';
-    ingredientsCopy = ingredientsCopy.filter(ingredient =>
-        ingredient.ingredient.type !== 'spice' &&
-        ingredient.ingredient.type !== 'condiment' &&
-        ingredient.ingredient.type !== 'herb' &&
-        ingredient.ingredient.type !== 'fat' &&
-        ingredient.ingredient.type !== 'dairy' &&
-        ingredient.ingredient.type !== 'bakingSupply'
+
+    ingredientsCopy = ingredientsCopy.filter(({ ingredient }) =>
+        ingredient.type !== ingredientTypes.spice &&
+        ingredient.type !== ingredientTypes.condiment &&
+        ingredient.type !== ingredientTypes.herb &&
+        ingredient.type !== ingredientTypes.fat &&
+        ingredient.type !== ingredientTypes.dairy &&
+        ingredient.type !== ingredientTypes.bakingSupply
     );
 
     if (ingredientsCopy.length > 0) {
@@ -219,3 +260,6 @@ const checkForDuplicates = () => {
 checkForDuplicates();
 clipboardManager();
 form.addEventListener('submit', generateRecipe);
+customizeConfigBtn.addEventListener('click', () => {
+    config.classList.toggle('hidden');
+});

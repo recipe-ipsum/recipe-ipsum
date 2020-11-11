@@ -2,6 +2,12 @@ import ClipboardJS from 'clipboard';
 
 export const clipboardManager = () => {
 
+    const nameCopy = new ClipboardJS('#copyNameBtn', {
+        text: () => {
+            return document.querySelector('#nameRender h2').innerText;
+        }
+    });
+
     const ingredientsCopy = new ClipboardJS('#copyIngredientsBtn', {
         text: () => {
             return document.querySelector('#ingredientsRender').innerText;
@@ -29,6 +35,10 @@ export const clipboardManager = () => {
             tooltip.classList.remove('tooltip--is-active');
         }, 1500);
     };
+
+    nameCopy.on('success', event => {
+        toggleTooltip(event.trigger.nextElementSibling);
+    });
 
     ingredientsCopy.on('success', event => {
         toggleTooltip(event.trigger.nextElementSibling);

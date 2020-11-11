@@ -15,7 +15,7 @@ export const decimalToFraction = (decimal) => {
     numerator /= divisor;                         // Should be 687
     denominator /= divisor;                       // Should be 2000
 
-    return Math.floor(numerator) + '/' + Math.floor(denominator);
+    return `${Math.floor(numerator)}/${Math.floor(denominator)}`;
 };
 
 export const capitalizeChars = (initialText) => {
@@ -27,4 +27,17 @@ export const capitalizeChars = (initialText) => {
     }
 
     return capitalizedText.join(' ');
+};
+
+export const poundsToGram = (poundsAmount, fraction) => {
+    //454 grams is 1 pound
+    if(poundsAmount === 1 && (fraction === 1 || 0) ) {
+        return 454;
+    }
+
+    if(fraction !== 1) {
+        return ((poundsAmount * 454) + (fraction * 454));
+    } else {
+        return poundsAmount * 454;
+    }
 };
