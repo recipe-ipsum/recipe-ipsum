@@ -33,7 +33,7 @@ const generateRecipe = (event) => {
     stepsHtmlList.innerHTML = '';
     const isSeriousMode = seriousModeInput.checked;
 
-    const nbIngredients = parseInt(nbIngredientsInput.value, 10) || Math.floor((Math.random() * 10) + (isSeriousMode ? 3 : 1));
+    const nbIngredients = parseInt(nbIngredientsInput.value, 10) || Math.floor((Math.random() * 10) + (isSeriousMode ? 3 : 2));
     const nbSteps = parseInt(nbStepsInput.value, 10) || Math.floor((Math.random() * 5) + (isSeriousMode ? 2 : 1));
 
     const ingredients = generateIngredients(nbIngredients, isSeriousMode);
