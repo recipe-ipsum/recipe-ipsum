@@ -44,7 +44,7 @@ const generateRecipe = (event) => {
         ingredientsHtmlList.innerHTML += `<li>${ingredient.amount} of ${ingredient.ingredient.name}</li>`;
     });
 
-    for(let i = 0; i < nbSteps; i ++){
+    for (let i = 0; i < nbSteps; i ++){
         stepsHtmlList.innerHTML += `<li><span>${i + 1}.<span> ${steps[i]}</li>`;
     }
 
@@ -222,7 +222,7 @@ const generateRecipeName = (ingredients) => {
         ingredient.type !== ingredientTypes.condiment &&
         ingredient.type !== ingredientTypes.herb &&
         ingredient.type !== ingredientTypes.fat &&
-        ingredient.type !== ingredientTypes.dairy &&
+        ingredient.type !== ingredientTypes.nonDairy &&
         ingredient.type !== ingredientTypes.bakingSupply
     );
 
