@@ -12,7 +12,8 @@ All code contributions must follow these steps:
 ## To add an ingredient:
 1. Navigate to `src/js/words.js`
 2. Make sure the ingredient(s) you want to add is not already in the `ingredients` array
-3. Add the ingredient(s) :)
+3. Make sure the ingredient is plant based (no meat
+4. Add the ingredient(s) :)
 
 ## To add a recipe direction:
 1. Navigate to `src/js/words.js`
