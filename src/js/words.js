@@ -92,7 +92,6 @@ export const ingredients = [
     { name: 'mayonnaise', type: condiment },
     { name: 'vinegar', type: condiment },
     { name: 'mustard', type: condiment },
-    { name: 'honey', type: condiment },
     { name: 'maple syrup', type: condiment },
     { name: 'garlic', type: vegetable },
     { name: 'shallot', type: vegetable },
