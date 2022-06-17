@@ -120,7 +120,7 @@ export const ingredients = [
     { name: 'vegan feta', type: nonDairy },
     { name: 'rosemary', type: herb },
     { name: 'basil', type: herb },
-    { name: 'baking soda', type: carbs },
+    { name: 'baking soda', type: bakingSupply },
     { name: 'brown sugar', type: spice },
     { name: 'tofu', type: protein },
     { name: 'tempeh', type: protein },
