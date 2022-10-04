@@ -185,6 +185,12 @@ export const ingredients = [
     { name: 'walnuts', type: nut },
     { name: 'soy milk', type: nonDairy},
     { name: 'almond milk', type: nonDairy},
+    { name: 'green beans', type: vegetable },
+    { name: 'peas', type: vegetable },
+    { name: 'honey', type: condiment },
+    { name: 'nectarine', type: fruit },
+    { name: 'cherries', type: fruit },
+    { name: 'sriracha', type: condiment }
 ];
 
 export const directions = [{ 
@@ -307,7 +313,19 @@ export const verbsAndAdjectives = [
     'Healthy',
     'High Protein',
     'One-Pot',
-    '30 Minute'
+    '30 Minute',
+    'Savory',
+    'Crunchy',
+    'Tasty',
+    'Rich',
+    'Aromatic',
+    'Glazed',
+    'Classic',
+    'Flavorful',
+    'Gourmet',
+    'Sauteed',
+    'Steamed',
+    'Tangy',
 ];
 
 export const recipeTypes = [
